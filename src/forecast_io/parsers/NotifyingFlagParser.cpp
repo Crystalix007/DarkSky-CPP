@@ -97,9 +97,13 @@ void NotifyingFlagParser::handleUnmappedAttribute(const std::string& key,
 	else
 	{
 		const std::string sourceName = key.substr(0, foundIdx);
-		// Parse all values in the JSON array and add them to the set of station IDs for the given
-		// source
-		json::insertJsonStringArrayValues(stations, sourceName, pValue);
+
+		if (json_object_get_type(pValue) == json_type_array)
+		{
+			// Parse all values in the JSON array and add them to the set of station IDs for the
+			// given source
+			json::insertJsonStringArrayValues(stations, sourceName, pValue);
+		}
 	}
 }
 
