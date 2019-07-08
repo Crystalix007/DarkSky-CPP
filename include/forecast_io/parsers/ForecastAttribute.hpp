@@ -30,7 +30,7 @@ enum ForecastAttribute
 // Typedefs
 typedef std::unordered_map<std::string, ForecastAttribute> ForecastAttributeNameMap;
 
-}
-}
+} // namespace parsers
+} // namespace forecast_io
 
 #endif // FORECASTATTRIBUTE_HPP

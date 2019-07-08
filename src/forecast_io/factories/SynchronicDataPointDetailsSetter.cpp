@@ -5,9 +5,10 @@ namespace forecast_io
 namespace factories
 {
 
-SynchronicDataPointDetailsSetter::SynchronicDataPointDetailsSetter(SynchronicDataPoint& instance) noexcept :
-	common::InstanceReferenceHolder<SynchronicDataPoint>(instance),
-	singleDataPointDetailsSetter(instance.getBaseDataPoint())
+SynchronicDataPointDetailsSetter::SynchronicDataPointDetailsSetter(
+    SynchronicDataPoint& instance) noexcept
+    : common::InstanceReferenceHolder<SynchronicDataPoint>(instance),
+      singleDataPointDetailsSetter(instance.getBaseDataPoint())
 {
 }
 
@@ -56,8 +57,7 @@ void SynchronicDataPointDetailsSetter::notifyPrecipitationIntensity(double inten
 	singleDataPointDetailsSetter.notifyPrecipitationIntensity(intensity);
 }
 
-void SynchronicDataPointDetailsSetter::notifyPrecipitationProbability(
-		double probability)
+void SynchronicDataPointDetailsSetter::notifyPrecipitationProbability(double probability)
 {
 	singleDataPointDetailsSetter.notifyPrecipitationProbability(probability);
 }
@@ -102,7 +102,5 @@ void SynchronicDataPointDetailsSetter::notifyWindSpeed(double speed)
 	singleDataPointDetailsSetter.notifyWindSpeed(speed);
 }
 
-
-}
-}
-
+} // namespace factories
+} // namespace forecast_io

@@ -4,8 +4,8 @@
 #include "../../common/AbstractFactory.hpp" // Base class: AbstractFactory
 #include "../listeners/SingleDataPointDetailsListener.hpp" // Base class: forecast_io::listeners::SingleDataPointDetailsListener
 
-#include "DataPointFactory.hpp"
 #include "../SingleDataPoint.hpp"
+#include "DataPointFactory.hpp"
 
 namespace forecast_io
 {
@@ -13,11 +13,10 @@ namespace forecast_io
 namespace factories
 {
 
-class SingleDataPointFactory: public common::AbstractFactory<SingleDataPoint>,
-		public listeners::SingleDataPointDetailsListener
+class SingleDataPointFactory : public common::AbstractFactory<SingleDataPoint>,
+                               public listeners::SingleDataPointDetailsListener
 {
 public:
-
 	SingleDataPoint create();
 
 	const DataPointFactory& getDataPointFactory() const
@@ -47,17 +46,14 @@ public:
 	virtual void notifyWindBearing(double bearing);
 	virtual void notifyWindSpeed(double speed);
 
-
 private:
-
 	DataPointFactory dataPointFactory;
 
 	SingleDataPoint result;
-
 };
 
-}
+} // namespace factories
 
-}
+} // namespace forecast_io
 
 #endif // SINGLEDATAPOINTFACTORY_HPP

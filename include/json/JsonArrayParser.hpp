@@ -6,21 +6,18 @@
 namespace json
 {
 
-template<typename P>
-class JsonArrayParser: public AbstractJsonParser
+template <typename P>
+class JsonArrayParser : public AbstractJsonParser
 {
 public:
-
-	JsonArrayParser(P& elementParser) :
-		elementParser(elementParser) {}
+	JsonArrayParser(P& elementParser) : elementParser(elementParser) {}
 
 	virtual void parse(json_object* const& pJsonObj)
 	{
 		const int arrayLength = json_object_array_length(pJsonObj);
-		for(int i = 0; i < arrayLength; ++i)
+		for (int i = 0; i < arrayLength; ++i)
 		{
-			json_object* const& arrayElement = json_object_array_get_idx(
-												   pJsonObj, i);
+			json_object* const& arrayElement = json_object_array_get_idx(pJsonObj, i);
 			handleArrayElement(arrayElement);
 		}
 
@@ -37,7 +34,6 @@ public:
 	}
 
 protected:
-
 	virtual void finishParse()
 	{
 		// By default do nothing
@@ -49,11 +45,9 @@ protected:
 	}
 
 private:
-
 	P& elementParser;
-
 };
 
-}
+} // namespace json
 
 #endif // JSONARRAYPARSER_HPP

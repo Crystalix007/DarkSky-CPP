@@ -3,16 +3,11 @@
 namespace forecast_io
 {
 
-SingleDataPoint::SingleDataPoint(
-	DataPoint baseDataPoint,
-	double temperature,
-	double apparentTemperature
-) noexcept :
-	baseDataPoint(baseDataPoint),
-	temperature(temperature),
-	apparentTemperature(apparentTemperature)
+SingleDataPoint::SingleDataPoint(DataPoint baseDataPoint, double temperature,
+                                 double apparentTemperature) noexcept
+    : baseDataPoint(baseDataPoint), temperature(temperature),
+      apparentTemperature(apparentTemperature)
 {
 }
 
-}
-
+} // namespace forecast_io

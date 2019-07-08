@@ -12,24 +12,22 @@ namespace parsers
 {
 
 FlagsFactoryParser::FlagsFactoryParser(listeners::FlagsListener* pFlagsListener,
-		factories::FlagsFactory* pFactory) noexcept :
-		NotifyingFlagParser(pFactory), pFactory(pFactory), flagsListeners(
-				{pFlagsListener})
+                                       factories::FlagsFactory* pFactory) noexcept
+    : NotifyingFlagParser(pFactory), pFactory(pFactory), flagsListeners({ pFlagsListener })
 {
 }
 
-void FlagsFactoryParser::parse(json_object* const & pJsonObj)
+void FlagsFactoryParser::parse(json_object* const& pJsonObj)
 {
 	NotifyingFlagParser::parse(pJsonObj);
 	Flags flags = pFactory->create();
 
-	for (listeners::FlagsListener* const & pFlagsListener : getFlagsListeners())
+	for (listeners::FlagsListener* const& pFlagsListener : getFlagsListeners())
 	{
 		pFlagsListener->notifyFlags(flags);
 	}
 }
 
-}
+} // namespace parsers
 
-}
-
+} // namespace forecast_io

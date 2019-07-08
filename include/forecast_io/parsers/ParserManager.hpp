@@ -24,43 +24,43 @@ class ForecastFactory;
 namespace parsers
 {
 
-class ParserManager: public common::Notifier<listeners::ForecastDetailsListener>
+class ParserManager : public common::Notifier<listeners::ForecastDetailsListener>
 {
 public:
-    ParserManager(factories::ForecastFactory* pListener, factories::FlagsFactory* pFlagsFactory) noexcept;
+	ParserManager(factories::ForecastFactory* pListener,
+	              factories::FlagsFactory* pFlagsFactory) noexcept;
 
-    // Constant getters -----------------------------------------------------
-    virtual const NotifyingAlertParser& getNotifyingAlertParser() const;
+	// Constant getters -----------------------------------------------------
+	virtual const NotifyingAlertParser& getNotifyingAlertParser() const;
 
-    virtual const AlertsFactoryParser& getAlertsParser() const;
+	virtual const AlertsFactoryParser& getAlertsParser() const;
 
-    virtual const NotifyingSynchronicDataPointParser& getSynchronicDataPointParser() const;
+	virtual const NotifyingSynchronicDataPointParser& getSynchronicDataPointParser() const;
 
-    virtual const NotifyingForecastParser& getForecastParser() const;
+	virtual const NotifyingForecastParser& getForecastParser() const;
 
-    // Non-constant getters -----------------------------------------------------
-    virtual NotifyingAlertParser& getNotifyingAlertParser();
+	// Non-constant getters -----------------------------------------------------
+	virtual NotifyingAlertParser& getNotifyingAlertParser();
 
-    virtual AlertsFactoryParser& getAlertsParser();
+	virtual AlertsFactoryParser& getAlertsParser();
 
-    virtual NotifyingSynchronicDataPointParser& getSynchronicDataPointParser();
+	virtual NotifyingSynchronicDataPointParser& getSynchronicDataPointParser();
 
-    virtual NotifyingForecastParser& getForecastParser();
+	virtual NotifyingForecastParser& getForecastParser();
 
 private:
+	ParserManager(factories::ForecastFactory* pListener, factories::FlagsFactory* pFlagsFactory,
+	              factories::AlertFactory* pAlertFactory) noexcept;
 
-	ParserManager(factories::ForecastFactory* pListener, factories::FlagsFactory* pFlagsFactory, factories::AlertFactory* pAlertFactory) noexcept;
-
-    factories::AlertFactory alertFactory;
-    NotifyingAlertParser alertParser;
-    AlertsFactoryParser alertsParser;
-    FlagsFactoryParser flagsParser;
-    NotifyingSynchronicDataPointParser synchronicDataPointParser;
-    NotifyingForecastParser forecastParser;
-
+	factories::AlertFactory alertFactory;
+	NotifyingAlertParser alertParser;
+	AlertsFactoryParser alertsParser;
+	FlagsFactoryParser flagsParser;
+	NotifyingSynchronicDataPointParser synchronicDataPointParser;
+	NotifyingForecastParser forecastParser;
 };
 
-}
-}
+} // namespace parsers
+} // namespace forecast_io
 
 #endif // PARSERMANAGER_HPP

@@ -10,17 +10,15 @@ namespace json
 class AbstractJsonParser
 {
 public:
-
 	AbstractJsonParser() = default;
 	AbstractJsonParser(const AbstractJsonParser& copyee) = default;
-    virtual ~AbstractJsonParser() = default;
+	virtual ~AbstractJsonParser() = default;
 
-    virtual AbstractJsonParser& operator= (const AbstractJsonParser& other) = default;
+	virtual AbstractJsonParser& operator=(const AbstractJsonParser& other) = default;
 
-    virtual void parse(json_object* const & pJsonObj) = 0;
-
+	virtual void parse(json_object* const& pJsonObj) = 0;
 };
 
-}
+} // namespace json
 
 #endif // ABSTRACTJSONPARSER_HPP

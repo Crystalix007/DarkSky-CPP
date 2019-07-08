@@ -7,7 +7,8 @@
 namespace forecast_io
 {
 
-DataOverview::DataOverview(std::string summary, std::string iconName) noexcept : summary(summary), iconName(iconName)
+DataOverview::DataOverview(std::string summary, std::string iconName) noexcept
+    : summary(summary), iconName(iconName)
 {
 }
 
@@ -27,10 +28,9 @@ std::string DataOverview::str() const
 	std::stringstream ss(std::stringstream::out);
 	dump(ss);
 	return ss.str();
-
 }
 
-}
+} // namespace forecast_io
 
 namespace std
 {
@@ -40,11 +40,9 @@ string to_string(const forecast_io::DataOverview& value)
 	return value.str();
 }
 
-}
+} // namespace std
 
-std::ostream& operator<<(std::ostream& o,
-		const forecast_io::DataOverview& value)
+std::ostream& operator<<(std::ostream& o, const forecast_io::DataOverview& value)
 {
 	return value.dump(o);
 }
-

@@ -7,7 +7,7 @@
 namespace math
 {
 
-static constexpr const char * const POLARITY_SEPARATOR = "\u00B0 ";
+static constexpr const char* const POLARITY_SEPARATOR = "\u00B0 ";
 
 static constexpr int DEFAULT_PRECISION = 2;
 
@@ -27,7 +27,6 @@ std::string Coordinate::createLatitudeString(double latitude)
 	if (latitude < 0)
 	{
 		ss << LATITUDE_NEGATIVE_SYMBOL;
-
 	}
 	else
 	{
@@ -57,10 +56,7 @@ std::string Coordinate::createLongitudeString(double longitude)
 
 // Con-/destructors -------------------------------------------------------------
 
-Coordinate::Coordinate(coord_t coordinatePoint) noexcept :
-		coordinatePoint(coordinatePoint)
-{
-}
+Coordinate::Coordinate(coord_t coordinatePoint) noexcept : coordinatePoint(coordinatePoint) {}
 
 // Instance members -------------------------------------------------------------
 
@@ -82,17 +78,15 @@ std::string Coordinate::createLatitudeString() const
 {
 	const double latitude = getLatitude();
 	return createLatitudeString(latitude);
-
 }
 
 std::string Coordinate::createLongitudeString() const
 {
 	const double longitude = getLongitude();
 	return createLongitudeString(longitude);
-
 }
 
-}
+} // namespace math
 
 namespace std
 {
@@ -102,7 +96,7 @@ string to_string(const math::Coordinate& value)
 	return value.str();
 }
 
-}
+} // namespace std
 
 std::ostream& operator<<(std::ostream& o, const math::Coordinate& value)
 {

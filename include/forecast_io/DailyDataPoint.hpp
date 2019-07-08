@@ -41,13 +41,11 @@ public:
 	}
 
 private:
-
 	AggregateDataPoint baseDataPoint;
 
 	double moonPhase;
-
 };
 
-}
+} // namespace forecast_io
 
 #endif // DAILYDATAPOINT_HPP

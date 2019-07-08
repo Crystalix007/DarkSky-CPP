@@ -8,10 +8,9 @@
 namespace json
 {
 
-TokenerParser::TokenerParser(AbstractJsonParser& parser) :
-		pTokener(json_tokener_new()), parser(parser)
+TokenerParser::TokenerParser(AbstractJsonParser& parser)
+    : pTokener(json_tokener_new()), parser(parser)
 {
-
 }
 
 TokenerParser::~TokenerParser()
@@ -19,7 +18,7 @@ TokenerParser::~TokenerParser()
 	json_tokener_free(pTokener);
 }
 
-void TokenerParser::parse(const char* const & input, int inputLength)
+void TokenerParser::parse(const char* const& input, int inputLength)
 {
 	json_object* const pJsonObj = json_tokener_parse_ex(pTokener, input, inputLength);
 	const json_tokener_error parseErrorCode = json_tokener_get_error(pTokener);
@@ -31,14 +30,13 @@ void TokenerParser::parse(const char* const & input, int inputLength)
 		}
 		else
 		{
-			const char * jsonErrorDesc = json_tokener_error_desc(parseErrorCode);
+			const char* jsonErrorDesc = json_tokener_error_desc(parseErrorCode);
 			throw json::ParseError(jsonErrorDesc);
 		}
 	}
 }
 
-std::streamsize TokenerParser::parse(std::istream& input, char* pBuffer,
-		int bufferSize)
+std::streamsize TokenerParser::parse(std::istream& input, char* pBuffer, int bufferSize)
 {
 	std::streamsize result(0);
 
@@ -55,4 +53,4 @@ std::streamsize TokenerParser::parse(std::istream& input, char* pBuffer,
 	return result;
 }
 
-}
+} // namespace json

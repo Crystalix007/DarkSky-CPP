@@ -3,21 +3,16 @@
 namespace forecast_io
 {
 
-AggregateDataPoint::AggregateDataPoint(DataPoint baseDataPoint,
-	double precipitationAccumulation,
-		common::TimestampedValue<double> precipitationIntensityMax,
-		math::Range<time_t> dayLength,
-		math::Range<common::TimestampedValue<double>> temperature,
-		math::Range<common::TimestampedValue<double>> apparentTemperature) noexcept :
-		baseDataPoint(baseDataPoint),
-		dayLength(dayLength),
-		precipitationAccumulation(precipitationAccumulation),
-		precipitationIntensityMax(precipitationIntensityMax),
-		temperature(temperature),
-		apparentTemperature(apparentTemperature)
+AggregateDataPoint::AggregateDataPoint(
+    DataPoint baseDataPoint, double precipitationAccumulation,
+    common::TimestampedValue<double> precipitationIntensityMax, math::Range<time_t> dayLength,
+    math::Range<common::TimestampedValue<double>> temperature,
+    math::Range<common::TimestampedValue<double>> apparentTemperature) noexcept
+    : baseDataPoint(baseDataPoint), dayLength(dayLength),
+      precipitationAccumulation(precipitationAccumulation),
+      precipitationIntensityMax(precipitationIntensityMax), temperature(temperature),
+      apparentTemperature(apparentTemperature)
 {
-
 }
 
-}
-
+} // namespace forecast_io

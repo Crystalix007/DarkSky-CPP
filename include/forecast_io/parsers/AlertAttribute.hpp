@@ -24,7 +24,7 @@ enum AlertAttribute
 // Typedefs
 typedef std::unordered_map<std::string, AlertAttribute> AlertAttributeNameMap;
 
-}
-}
+} // namespace parsers
+} // namespace forecast_io
 
 #endif // ALERTATTRIBUTE_HPP

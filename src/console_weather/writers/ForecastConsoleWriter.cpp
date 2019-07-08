@@ -13,15 +13,14 @@ namespace console_weather
 namespace writers
 {
 
-ForecastConsoleWriter::ForecastConsoleWriter(int consoleWidth) noexcept :
-	alertWriter(consoleWidth),
-	synchronicDataPointWriter(consoleWidth),
-	alertsSectionHeader(createPaddedHeader("ALERTS ", MAIN_SECTION_HEADER_PADDING, consoleWidth)),
-	currentWeatherSectionHeader(createPaddedHeader("CURRENT WEATHER ", MAIN_SECTION_HEADER_PADDING, consoleWidth)),
-	flagsSectionHeader(createPaddedHeader("FLAGS ", MAIN_SECTION_HEADER_PADDING, consoleWidth)),
-	headerRowSeparator(createHeaderSeparator(SUBSECTION_HEADER_PADDING, consoleWidth))
+ForecastConsoleWriter::ForecastConsoleWriter(int consoleWidth) noexcept
+    : alertWriter(consoleWidth), synchronicDataPointWriter(consoleWidth),
+      alertsSectionHeader(createPaddedHeader("ALERTS ", MAIN_SECTION_HEADER_PADDING, consoleWidth)),
+      currentWeatherSectionHeader(
+          createPaddedHeader("CURRENT WEATHER ", MAIN_SECTION_HEADER_PADDING, consoleWidth)),
+      flagsSectionHeader(createPaddedHeader("FLAGS ", MAIN_SECTION_HEADER_PADDING, consoleWidth)),
+      headerRowSeparator(createHeaderSeparator(SUBSECTION_HEADER_PADDING, consoleWidth))
 {
-
 }
 
 // Members ----------------------------------------------------------------------
@@ -59,10 +58,9 @@ void ForecastConsoleWriter::write(const forecast_io::Forecast& value, std::ostre
 	// Flags
 	output << flagsSectionHeader << '\n';
 	flagsWriter.write(value.getFlags(), output);
-
 }
 
-template<typename C>
+template <typename C>
 void ForecastConsoleWriter::write(const C& alerts, std::ostream& output)
 {
 	for (const forecast_io::Alert& alert : alerts)
@@ -72,6 +70,5 @@ void ForecastConsoleWriter::write(const C& alerts, std::ostream& output)
 	}
 }
 
-}
-}
-
+} // namespace writers
+} // namespace console_weather

@@ -6,19 +6,15 @@
 namespace common
 {
 
-template<typename N>
+template <typename N>
 class Notifier
 {
 public:
 	Notifier() = default;
 
-	Notifier(N* pListener) : Notifier(std::unordered_set<N*>({pListener}))
-	{
-	}
+	Notifier(N* pListener) : Notifier(std::unordered_set<N*>({ pListener })) {}
 
-	Notifier(std::unordered_set<N*> listeners) : listeners(listeners)
-	{
-	}
+	Notifier(std::unordered_set<N*> listeners) : listeners(listeners) {}
 
 	virtual ~Notifier() = default;
 
@@ -33,11 +29,9 @@ public:
 	}
 
 private:
-
 	std::unordered_set<N*> listeners;
-
 };
 
-}
+} // namespace common
 
 #endif // LISTENERHOLDER_HPP

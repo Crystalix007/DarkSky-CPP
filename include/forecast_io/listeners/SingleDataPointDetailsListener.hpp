@@ -9,20 +9,18 @@ namespace forecast_io
 namespace listeners
 {
 
-class SingleDataPointDetailsListener: public forecast_io::listeners::DataPointDetailsListener
+class SingleDataPointDetailsListener : public forecast_io::listeners::DataPointDetailsListener
 {
 
 public:
-
 	virtual ~SingleDataPointDetailsListener() = default;
 
 	virtual void notifyApparentTemperature(double temperature);
 	virtual void notifyTemperature(double temperature);
-
 };
 
-}
+} // namespace listeners
 
-}
+} // namespace forecast_io
 
 #endif // SINGLEDATAPOINTDETAILSLISTENER_HPP

@@ -15,7 +15,6 @@ namespace parsers
 class FlagsAttributeDefaultNameMapHolder
 {
 public:
-
 	static std::unique_ptr<FlagsAttributeNameMap>& getInstance()
 	{
 		return loadInstanceLazily();
@@ -27,7 +26,6 @@ public:
 	}
 
 private:
-
 	static std::unique_ptr<FlagsAttributeNameMap> pInstance;
 
 	static std::unique_ptr<FlagsAttributeNameMap> createInstance();
@@ -40,10 +38,9 @@ private:
 		}
 		return pInstance;
 	}
-
 };
 
-}
-}
+} // namespace parsers
+} // namespace forecast_io
 
 #endif // FLAGATTRIBUTEDEFAULTNAMEMAPHOLDER

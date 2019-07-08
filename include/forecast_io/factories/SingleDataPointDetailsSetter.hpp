@@ -1,11 +1,11 @@
 #ifndef SINGLEDATAPOINTDETAILSSETTER_HPP
 #define SINGLEDATAPOINTDETAILSSETTER_HPP
 
-#include "../listeners/SingleDataPointDetailsListener.hpp" // Base class: forecast_io::listeners::SingleDataPointDetailsListener
 #include "../../common/InstanceReferenceHolder.hpp" // Base class: common::InstanceReferenceHolder
+#include "../listeners/SingleDataPointDetailsListener.hpp" // Base class: forecast_io::listeners::SingleDataPointDetailsListener
 
-#include "DataPointDetailsSetter.hpp"
 #include "../SingleDataPoint.hpp"
+#include "DataPointDetailsSetter.hpp"
 
 namespace forecast_io
 {
@@ -13,9 +13,8 @@ namespace forecast_io
 namespace factories
 {
 
-class SingleDataPointDetailsSetter :
-	public listeners::SingleDataPointDetailsListener,
-	public common::InstanceReferenceHolder<SingleDataPoint>
+class SingleDataPointDetailsSetter : public listeners::SingleDataPointDetailsListener,
+                                     public common::InstanceReferenceHolder<SingleDataPoint>
 {
 public:
 	SingleDataPointDetailsSetter(SingleDataPoint& instance) noexcept;
@@ -37,15 +36,12 @@ public:
 	virtual void notifyWindBearing(double bearing);
 	virtual void notifyWindSpeed(double speed);
 
-
 private:
-
 	DataPointDetailsSetter dataPointDetailsSetter;
-
 };
 
-}
+} // namespace factories
 
-}
+} // namespace forecast_io
 
 #endif // SINGLEDATAPOINTDETAILSSETTER_HPP

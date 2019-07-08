@@ -9,17 +9,17 @@ namespace forecast_io
 namespace listeners
 {
 
-class SynchronicDataPointDetailsListener: public forecast_io::listeners::SingleDataPointDetailsListener
+class SynchronicDataPointDetailsListener
+    : public forecast_io::listeners::SingleDataPointDetailsListener
 {
 
 public:
-
 	virtual void notifyNearestStormBearing(double bearing);
 	virtual void notifyNearestStormDistance(double distance);
 };
 
-}
+} // namespace listeners
 
-}
+} // namespace forecast_io
 
 #endif // SYNCHRONICDATAPOINTDETAILSLISTENER_HPP

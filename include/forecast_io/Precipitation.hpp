@@ -13,7 +13,7 @@ public:
 	Precipitation() = default;
 	Precipitation(double intensity, double probability, std::string type) noexcept;
 
-// Constant getters ---------------------------------------------------------
+	// Constant getters ---------------------------------------------------------
 	double getIntensity() const
 	{
 		return intensity;
@@ -46,13 +46,11 @@ public:
 	}
 
 private:
-
 	double intensity;
 	double probability;
 	std::string type;
-
 };
 
-}
+} // namespace forecast_io
 
 #endif // PRECIPITATION_HPP

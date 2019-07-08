@@ -15,7 +15,6 @@ namespace parsers
 class DataPointAttributeDefaultNameMapHolder
 {
 public:
-
 	static std::unique_ptr<DataPointAttributeNameMap>& getInstance()
 	{
 		return loadInstanceLazily();
@@ -27,7 +26,6 @@ public:
 	}
 
 private:
-
 	static std::unique_ptr<DataPointAttributeNameMap> pInstance;
 
 	static std::unique_ptr<DataPointAttributeNameMap> createInstance();
@@ -40,10 +38,9 @@ private:
 		}
 		return pInstance;
 	}
-
 };
 
-}
-}
+} // namespace parsers
+} // namespace forecast_io
 
 #endif // DATAPOINTATTRIBUTEDEFAULTNAMEMAPHOLDER_HPP

@@ -5,16 +5,15 @@
 namespace common
 {
 
-TimeWriter::TimeWriter(const char* format, size_t maxLength) noexcept : format(format), maxLength(maxLength)
+TimeWriter::TimeWriter(const char* format, size_t maxLength) noexcept
+    : format(format), maxLength(maxLength)
 {
-
 }
 
 void TimeWriter::write(const time_t& value, std::ostream& output)
 {
 	const struct tm* pTime = std::localtime(&value);
 	write(pTime, output);
-
 }
 
 void TimeWriter::write(const struct tm* value, std::ostream& output)
@@ -25,4 +24,4 @@ void TimeWriter::write(const struct tm* value, std::ostream& output)
 	output << rawpBuffer;
 }
 
-}
+} // namespace common

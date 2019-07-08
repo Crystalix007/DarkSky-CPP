@@ -15,7 +15,7 @@ public:
 	RadialVelocity(const RadialVelocity& copyee) = default;
 	virtual ~RadialVelocity() = default;
 
-	virtual RadialVelocity& operator= (const RadialVelocity& other) = default;
+	virtual RadialVelocity& operator=(const RadialVelocity& other) = default;
 
 	virtual std::ostream& dump(std::ostream& o) const;
 	virtual std::string str() const;
@@ -43,12 +43,10 @@ public:
 	}
 
 private:
-
 	double magnitude;
 	double direction;
-
 };
 
-}
+} // namespace math
 
 #endif // RADIALVELOCITY_HPP

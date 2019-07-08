@@ -10,9 +10,8 @@ namespace console_weather
 namespace writers
 {
 
-AlertConsoleWriter::AlertConsoleWriter(int consoleWidth) noexcept :
-	headerSeparator(createHeaderSeparator('-',
-		consoleWidth / 2))
+AlertConsoleWriter::AlertConsoleWriter(int consoleWidth) noexcept
+    : headerSeparator(createHeaderSeparator('-', consoleWidth / 2))
 {
 	// ctor
 }
@@ -27,6 +26,5 @@ void AlertConsoleWriter::write(const forecast_io::Alert& value, std::ostream& ou
 	output << "\nFor more information see " << value.getUri() << '\n';
 }
 
-}
-}
-
+} // namespace writers
+} // namespace console_weather

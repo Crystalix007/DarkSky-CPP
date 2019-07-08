@@ -16,9 +16,12 @@ static void insertDefaultMeasurementSystems(MeasurementSystemAttributeValueMap& 
 }
 
 // Class members --------------------------------------------------------------
-std::unique_ptr<MeasurementSystemAttributeValueMap> MeasurementSystemDefaultAttributeValueMapHolder::pInstance = nullptr;
+std::unique_ptr<MeasurementSystemAttributeValueMap>
+    MeasurementSystemDefaultAttributeValueMapHolder::pInstance = nullptr;
 
-const math::MeasurementSystem* MeasurementSystemDefaultAttributeValueMapHolder::findMeasurementSystem(MeasurementSystemAttributeValueMap::key_type attributeValue)
+const math::MeasurementSystem*
+MeasurementSystemDefaultAttributeValueMapHolder::findMeasurementSystem(
+    MeasurementSystemAttributeValueMap::key_type attributeValue)
 {
 	const math::MeasurementSystem* result(nullptr);
 
@@ -32,14 +35,13 @@ const math::MeasurementSystem* MeasurementSystemDefaultAttributeValueMapHolder::
 	return result;
 }
 
-std::unique_ptr<MeasurementSystemAttributeValueMap> MeasurementSystemDefaultAttributeValueMapHolder::createInstance()
+std::unique_ptr<MeasurementSystemAttributeValueMap>
+MeasurementSystemDefaultAttributeValueMapHolder::createInstance()
 {
 	std::unique_ptr<MeasurementSystemAttributeValueMap> result(
-			new MeasurementSystemAttributeValueMap(
-					math::MeasurementSystem_COUNT));
+	    new MeasurementSystemAttributeValueMap(math::MeasurementSystem_COUNT));
 	insertDefaultMeasurementSystems(*result);
 	return result;
 }
-
 
 } /* namespace forecast_io */

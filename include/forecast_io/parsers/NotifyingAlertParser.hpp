@@ -1,8 +1,8 @@
 #ifndef NOTIFYINGALERTPARSER_HPP
 #define NOTIFYINGALERTPARSER_HPP
 
+#include "../../common/Notifier.hpp"                 // Base class: Notifier
 #include "../../json/AbstractJsonStateMapParser.hpp" // Base class: json::AbstractJsonStateMapParser
-#include "../../common/Notifier.hpp" // Base class: Notifier
 
 #include "AlertAttribute.hpp"
 
@@ -18,26 +18,22 @@ class AlertDetailsListener;
 namespace parsers
 {
 
-class NotifyingAlertParser: public json::AbstractJsonStateMapParser<
-		AlertAttribute>, public common::Notifier<listeners::AlertDetailsListener>
+class NotifyingAlertParser : public json::AbstractJsonStateMapParser<AlertAttribute>,
+                             public common::Notifier<listeners::AlertDetailsListener>
 {
 public:
-	NotifyingAlertParser(listeners::AlertDetailsListener* pListener,
-			const AlertAttributeNameMap& attributeNames =
-					DEFAULT_ATTRIBUTE_NAMES) noexcept;
+	NotifyingAlertParser(
+	    listeners::AlertDetailsListener* pListener,
+	    const AlertAttributeNameMap& attributeNames = DEFAULT_ATTRIBUTE_NAMES) noexcept;
 
 protected:
-
-	virtual void parseAttribute(const AlertAttribute& attribute,
-			json_object* const & pValue);
+	virtual void parseAttribute(const AlertAttribute& attribute, json_object* const& pValue);
 
 private:
-
 	static const AlertAttributeNameMap DEFAULT_ATTRIBUTE_NAMES;
-
 };
 
-}
-}
+} // namespace parsers
+} // namespace forecast_io
 
 #endif // NOTIFYINGALERTPARSER_HPP

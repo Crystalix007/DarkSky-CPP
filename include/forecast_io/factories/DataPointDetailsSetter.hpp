@@ -1,8 +1,8 @@
 #ifndef DATAPOINTDETAILSSETTER_HPP
 #define DATAPOINTDETAILSSETTER_HPP
 
-#include "../listeners/DataPointDetailsListener.hpp" // Base class: forecast_io::listeners::DataPointDetailsListener
 #include "../../common/InstanceReferenceHolder.hpp" // Base class: common::InstanceReferenceHolder
+#include "../listeners/DataPointDetailsListener.hpp" // Base class: forecast_io::listeners::DataPointDetailsListener
 
 #include "../DataPoint.hpp"
 
@@ -12,9 +12,8 @@ namespace forecast_io
 namespace factories
 {
 
-class DataPointDetailsSetter :
-	public listeners::DataPointDetailsListener,
-	public common::InstanceReferenceHolder<DataPoint>
+class DataPointDetailsSetter : public listeners::DataPointDetailsListener,
+                               public common::InstanceReferenceHolder<DataPoint>
 {
 public:
 	DataPointDetailsSetter(DataPoint& instance) noexcept;
@@ -35,11 +34,10 @@ public:
 	virtual void notifyWindSpeed(double speed);
 
 private:
-
 };
 
-}
+} // namespace factories
 
-}
+} // namespace forecast_io
 
 #endif // DATAPOINTDETAILSSETTER_HPP

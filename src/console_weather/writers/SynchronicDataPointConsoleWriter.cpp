@@ -33,7 +33,8 @@ static void write(const forecast_io::Precipitation& value, std::ostream& output)
 	if (type.empty())
 	{
 		output << "(none)";
-	} else
+	}
+	else
 	{
 		output << type;
 	}
@@ -46,18 +47,22 @@ static void write(const math::RadialVelocity& value, std::ostream& output)
 	output << "Speed: " << value.getMagnitude() << ' ' << WINDSPEED_UNITS << '\n';
 }
 
-SynchronicDataPointConsoleWriter::SynchronicDataPointConsoleWriter(int consoleWidth, common::TimeWriter timeWriter) noexcept :
-	timeWriter(timeWriter),
-	headerRowSeparator(createHeaderSeparator(SUBSECTION_HEADER_PADDING, consoleWidth)),
-	nearestStormSectionHeader(createPaddedHeader("Nearest storm ", SUBSECTION_HEADER_PADDING, consoleWidth)),
-	precipitationSectionHeader(createPaddedHeader("Precipitation ", SUBSECTION_HEADER_PADDING, consoleWidth)),
-	windSectionHeader(createPaddedHeader("Wind ", SUBSECTION_HEADER_PADDING, consoleWidth))
+SynchronicDataPointConsoleWriter::SynchronicDataPointConsoleWriter(
+    int consoleWidth, common::TimeWriter timeWriter) noexcept
+    : timeWriter(timeWriter),
+      headerRowSeparator(createHeaderSeparator(SUBSECTION_HEADER_PADDING, consoleWidth)),
+      nearestStormSectionHeader(
+          createPaddedHeader("Nearest storm ", SUBSECTION_HEADER_PADDING, consoleWidth)),
+      precipitationSectionHeader(
+          createPaddedHeader("Precipitation ", SUBSECTION_HEADER_PADDING, consoleWidth)),
+      windSectionHeader(createPaddedHeader("Wind ", SUBSECTION_HEADER_PADDING, consoleWidth))
 {
 }
 
 // Members ----------------------------------------------------------------------
 
-void SynchronicDataPointConsoleWriter::write(const forecast_io::SynchronicDataPoint& value, std::ostream& output)
+void SynchronicDataPointConsoleWriter::write(const forecast_io::SynchronicDataPoint& value,
+                                             std::ostream& output)
 {
 	const forecast_io::SingleDataPoint& baseDataPoint = value.getBaseDataPoint();
 	write(baseDataPoint, output);
@@ -67,7 +72,8 @@ void SynchronicDataPointConsoleWriter::write(const forecast_io::SynchronicDataPo
 	output << headerRowSeparator << '\n';
 }
 
-void SynchronicDataPointConsoleWriter::write(const forecast_io::DataPoint& value, std::ostream& output)
+void SynchronicDataPointConsoleWriter::write(const forecast_io::DataPoint& value,
+                                             std::ostream& output)
 {
 	output << "Time: ";
 	const time_t time = value.getTime();
@@ -79,7 +85,8 @@ void SynchronicDataPointConsoleWriter::write(const forecast_io::DataPoint& value
 	output << headerRowSeparator << '\n';
 	// TODO: Finish console writer for DataPoint
 	output << "Cloud cover: " << value.getCloudCover() << '\n';
-	output << "Dew point: " << value.getDewPoint() << DEGREE_SYMBOL << ' ' << TEMPERATURE_UNITS << '\n';
+	output << "Dew point: " << value.getDewPoint() << DEGREE_SYMBOL << ' ' << TEMPERATURE_UNITS
+	       << '\n';
 	output << "Humidity: " << value.getHumidity() << '\n';
 	output << "Ozone: " << value.getOzone() << ' ' << AREA_DENSITY_UNITS << '\n';
 
@@ -93,18 +100,20 @@ void SynchronicDataPointConsoleWriter::write(const forecast_io::DataPoint& value
 
 	output << windSectionHeader << '\n';
 	const math::RadialVelocity& wind = value.getWind();
-	writers::write(wind,output);
+	writers::write(wind, output);
 	output << headerRowSeparator << '\n';
 }
 
-void SynchronicDataPointConsoleWriter::write(const forecast_io::SingleDataPoint& value, std::ostream& output)
+void SynchronicDataPointConsoleWriter::write(const forecast_io::SingleDataPoint& value,
+                                             std::ostream& output)
 {
 	const forecast_io::DataPoint& baseDataPoint = value.getBaseDataPoint();
 	write(baseDataPoint, output);
-	output << "Temperature: " << value.getTemperature() << DEGREE_SYMBOL << ' ' << TEMPERATURE_UNITS << '\n';
-	output << "Apparent temperature: " << value.getApparentTemperature() << DEGREE_SYMBOL << ' ' << TEMPERATURE_UNITS << '\n';
+	output << "Temperature: " << value.getTemperature() << DEGREE_SYMBOL << ' ' << TEMPERATURE_UNITS
+	       << '\n';
+	output << "Apparent temperature: " << value.getApparentTemperature() << DEGREE_SYMBOL << ' '
+	       << TEMPERATURE_UNITS << '\n';
 }
 
-}
-}
-
+} // namespace writers
+} // namespace console_weather

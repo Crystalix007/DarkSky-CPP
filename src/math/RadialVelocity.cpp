@@ -7,8 +7,8 @@
 namespace math
 {
 
-RadialVelocity::RadialVelocity(double magnitude, double direction) noexcept :
-		magnitude(magnitude), direction(direction)
+RadialVelocity::RadialVelocity(double magnitude, double direction) noexcept
+    : magnitude(magnitude), direction(direction)
 {
 }
 
@@ -28,8 +28,6 @@ std::string RadialVelocity::str() const
 	std::stringstream ss(std::stringstream::out);
 	dump(ss);
 	return ss.str();
-
 }
 
-}
-
+} // namespace math

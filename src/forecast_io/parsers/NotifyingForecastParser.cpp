@@ -17,8 +17,7 @@ namespace parsers
 // Free functions ---------------------------------------------------------------
 static ForecastAttributeNameMap createDefaultAttributeNameMap()
 {
-	ForecastAttributeNameMap result(
-			ForecastAttribute::ForecastAttribute_COUNT);
+	ForecastAttributeNameMap result(ForecastAttribute::ForecastAttribute_COUNT);
 
 	result["alerts"] = ForecastAttribute::ALERTS;
 	result["currently"] = ForecastAttribute::CURRENTLY;
@@ -37,102 +36,98 @@ static ForecastAttributeNameMap createDefaultAttributeNameMap()
 // Con-/destructors -------------------------------------------------------------
 
 NotifyingForecastParser::NotifyingForecastParser(
-		listeners::ForecastDetailsListener* pListener,
-		json::JsonArrayParser<NotifyingAlertParser>& alertsParser,
-		AbstractJsonParser& flagParser,
-		NotifyingSynchronicDataPointParser& synchronicDataPointParser,
-		const ForecastAttributeNameMap& attributeNames) noexcept :
-		AbstractJsonStateMapParser(attributeNames), Notifier(pListener), alertsParser(
-				alertsParser), flagParser(flagParser), synchronicDataPointParser(
-				synchronicDataPointParser)
+    listeners::ForecastDetailsListener* pListener,
+    json::JsonArrayParser<NotifyingAlertParser>& alertsParser, AbstractJsonParser& flagParser,
+    NotifyingSynchronicDataPointParser& synchronicDataPointParser,
+    const ForecastAttributeNameMap& attributeNames) noexcept
+    : AbstractJsonStateMapParser(attributeNames), Notifier(pListener), alertsParser(alertsParser),
+      flagParser(flagParser), synchronicDataPointParser(synchronicDataPointParser)
 {
 }
 
 // Members ----------------------------------------------------------------------
 const ForecastAttributeNameMap NotifyingForecastParser::DEFAULT_ATTRIBUTE_NAMES =
-		createDefaultAttributeNameMap();
+    createDefaultAttributeNameMap();
 
 void NotifyingForecastParser::parseAttribute(const ForecastAttribute& attribute,
-		json_object* const & pValue)
+                                             json_object* const& pValue)
 {
 	switch (attribute)
 	{
-	case ForecastAttribute::ALERTS:
-	{
-		alertsParser.parse(pValue);
-		break;
-	}
-	case ForecastAttribute::CURRENTLY:
-	{
-		synchronicDataPointParser.parse(pValue);
-		break;
-	}
-	case ForecastAttribute::DAILY:
-	{
-		// TODO: Implement parsing of "daily" data points
-		break;
-	}
-	case ForecastAttribute::FLAGS:
-	{
-		flagParser.parse(pValue);
-		break;
-	}
-	case ForecastAttribute::HOURLY:
-	{
-		// TODO: Implement parsing of "hourly" data points
-		break;
-	}
-	case ForecastAttribute::LATITUDE:
-	{
-		const double latitude(json_object_get_double(pValue));
-		for (listeners::ForecastDetailsListener* const & pListener : getListeners())
+		case ForecastAttribute::ALERTS:
 		{
-			pListener->notifyLatitude(latitude);
+			alertsParser.parse(pValue);
+			break;
 		}
-		break;
-	}
-	case ForecastAttribute::LONGITUDE:
-	{
-		const double longitude(json_object_get_double(pValue));
-		for (listeners::ForecastDetailsListener* const & pListener : getListeners())
+		case ForecastAttribute::CURRENTLY:
 		{
-			pListener->notifyLongitude(longitude);
+			synchronicDataPointParser.parse(pValue);
+			break;
 		}
-		break;
-	}
-	case ForecastAttribute::MINUTELY:
-	{
-		// TODO: Implement parsing of "minutely" data points
-		break;
-	}
-	case ForecastAttribute::OFFSET:
-	{
-		const signed char offset(
-				static_cast<signed char>(json_object_get_int64(pValue)));
-		for (listeners::ForecastDetailsListener* const & pListener : getListeners())
+		case ForecastAttribute::DAILY:
 		{
-			pListener->notifyOffset(offset);
+			// TODO: Implement parsing of "daily" data points
+			break;
 		}
-		break;
-	}
-	case ForecastAttribute::TIMEZONE:
-	{
-		const std::string timezone(json_object_get_string(pValue));
-		for (listeners::ForecastDetailsListener* const & pListener : getListeners())
+		case ForecastAttribute::FLAGS:
 		{
-			pListener->notifyTimezone(timezone);
+			flagParser.parse(pValue);
+			break;
 		}
-		break;
-	}
-	default:
-	{
-		throw std::logic_error(
-				createUndefinedAttributeErrorMessage(ForecastAttribute_NAME,
-						attribute));
-		break;
-	}
+		case ForecastAttribute::HOURLY:
+		{
+			// TODO: Implement parsing of "hourly" data points
+			break;
+		}
+		case ForecastAttribute::LATITUDE:
+		{
+			const double latitude(json_object_get_double(pValue));
+			for (listeners::ForecastDetailsListener* const& pListener : getListeners())
+			{
+				pListener->notifyLatitude(latitude);
+			}
+			break;
+		}
+		case ForecastAttribute::LONGITUDE:
+		{
+			const double longitude(json_object_get_double(pValue));
+			for (listeners::ForecastDetailsListener* const& pListener : getListeners())
+			{
+				pListener->notifyLongitude(longitude);
+			}
+			break;
+		}
+		case ForecastAttribute::MINUTELY:
+		{
+			// TODO: Implement parsing of "minutely" data points
+			break;
+		}
+		case ForecastAttribute::OFFSET:
+		{
+			const signed char offset(static_cast<signed char>(json_object_get_int64(pValue)));
+			for (listeners::ForecastDetailsListener* const& pListener : getListeners())
+			{
+				pListener->notifyOffset(offset);
+			}
+			break;
+		}
+		case ForecastAttribute::TIMEZONE:
+		{
+			const std::string timezone(json_object_get_string(pValue));
+			for (listeners::ForecastDetailsListener* const& pListener : getListeners())
+			{
+				pListener->notifyTimezone(timezone);
+			}
+			break;
+		}
+		default:
+		{
+			throw std::logic_error(
+			    createUndefinedAttributeErrorMessage(ForecastAttribute_NAME, attribute));
+			break;
+		}
 	}
 }
 
-}
-}
+} // namespace parsers
+} // namespace forecast_io

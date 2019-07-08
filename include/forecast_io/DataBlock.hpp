@@ -12,74 +12,71 @@ namespace forecast_io
 {
 
 // Forward declarations
-//class SingleDataPoint;
+// class SingleDataPoint;
 
 class DataBlock
 {
 public:
-    /** Default constructor */
-    DataBlock() noexcept : DataBlock(0, DataOverview())
+	/** Default constructor */
+	DataBlock() noexcept : DataBlock(0, DataOverview())
 	{
-		//ctor
+		// ctor
 	}
 
-    DataBlock(time_t time, DataOverview overview) noexcept : overview(overview), time(time)
+	DataBlock(time_t time, DataOverview overview) noexcept : overview(overview), time(time)
 	{
-		//ctor
+		// ctor
 	}
 
-    // Constant getters ---------------------------------------------------------
-    const std::vector<SingleDataPoint >& getData() const
-    {
-    	return data;
-    }
+	// Constant getters ---------------------------------------------------------
+	const std::vector<SingleDataPoint>& getData() const
+	{
+		return data;
+	}
 
-    const DataOverview& getOverview() const
-    {
-        return overview;
-    }
+	const DataOverview& getOverview() const
+	{
+		return overview;
+	}
 
 	time_t getTime() const
-    {
-        return time;
-    }
+	{
+		return time;
+	}
 
-    // Non-constant getters -----------------------------------------------------
-    std::vector<SingleDataPoint >& getData()
-    {
+	// Non-constant getters -----------------------------------------------------
+	std::vector<SingleDataPoint>& getData()
+	{
 		return data;
-    }
+	}
 
+	DataOverview& getOverview()
+	{
+		return overview;
+	}
 
-    DataOverview& getOverview()
-    {
-        return overview;
-    }
-
-    // Setters -----------------------------------------------------------------
-    void setData(std::vector<SingleDataPoint > data)
-    {
+	// Setters -----------------------------------------------------------------
+	void setData(std::vector<SingleDataPoint> data)
+	{
 		this->data = data;
-    }
+	}
 
-    void setOverview(DataOverview overview)
-    {
-        this->overview = overview;
-    }
+	void setOverview(DataOverview overview)
+	{
+		this->overview = overview;
+	}
 
 	void setTime(time_t time)
-    {
-        this->time = time;
-    }
+	{
+		this->time = time;
+	}
 
 private:
-
-	std::vector<SingleDataPoint > data;
-    DataOverview overview;
-    time_t time;
-
+	std::vector<SingleDataPoint> data;
+	DataOverview overview;
+	time_t time;
 };
 
-}
+} // namespace forecast_io
 
 #endif // DATABLOCK_HPP

@@ -8,15 +8,15 @@ namespace forecast_io
 {
 
 Alert::Alert(std::string title, time_t expiryTime, std::string description,
-		std::string uri) noexcept :
-		title(title), expiryTime(expiryTime), description(description), uri(uri)
+             std::string uri) noexcept
+    : title(title), expiryTime(expiryTime), description(description), uri(uri)
 {
 }
 
 bool Alert::equal_to(const Alert& other) const
 {
-	return ((expiryTime == other.expiryTime) && (uri == other.uri)
-			&& (title == other.title) && (description == other.description));
+	return ((expiryTime == other.expiryTime) && (uri == other.uri) && (title == other.title) &&
+	        (description == other.description));
 }
 
 size_t Alert::hash() const
@@ -55,10 +55,9 @@ std::string Alert::str() const
 	std::stringstream ss(std::stringstream::out);
 	dump(ss);
 	return ss.str();
-
 }
 
-}
+} // namespace forecast_io
 
 namespace std
 {
@@ -66,11 +65,9 @@ string to_string(const forecast_io::Alert& value)
 {
 	return value.str();
 }
-}
+} // namespace std
 
 std::ostream& operator<<(std::ostream& o, const forecast_io::Alert& value)
 {
 	return value.dump(o);
 }
-
-

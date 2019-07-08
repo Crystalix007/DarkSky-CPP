@@ -1,8 +1,8 @@
 #ifndef NOTIFYINGSYNCHRONICDATAPOINTPARSER_HPP
 #define NOTIFYINGSYNCHRONICDATAPOINTPARSER_HPP
 
+#include "../../common/Notifier.hpp"                 // Base class: Notifier
 #include "../../json/AbstractJsonStateMapParser.hpp" // Base class: json::AbstractJsonStateMapParser
-#include "../../common/Notifier.hpp" // Base class: Notifier
 
 #include "DataPointAttribute.hpp"
 #include "DataPointAttributeDefaultNameMapHolder.hpp"
@@ -19,25 +19,22 @@ class SynchronicDataPointDetailsListener;
 namespace parsers
 {
 
-class NotifyingSynchronicDataPointParser: public json::AbstractJsonStateMapParser<
-		DataPointAttribute>,
-		public common::Notifier<listeners::SynchronicDataPointDetailsListener>
+class NotifyingSynchronicDataPointParser
+    : public json::AbstractJsonStateMapParser<DataPointAttribute>,
+      public common::Notifier<listeners::SynchronicDataPointDetailsListener>
 {
 public:
 	NotifyingSynchronicDataPointParser(
-			listeners::SynchronicDataPointDetailsListener* pListener,
-			const DataPointAttributeNameMap& attributeNames =
-					*DataPointAttributeDefaultNameMapHolder::getInstance()) noexcept;
+	    listeners::SynchronicDataPointDetailsListener* pListener,
+	    const DataPointAttributeNameMap& attributeNames =
+	        *DataPointAttributeDefaultNameMapHolder::getInstance()) noexcept;
 
 protected:
-
-	virtual void parseAttribute(const DataPointAttribute& attribute,
-			json_object* const & pValue);
-
+	virtual void parseAttribute(const DataPointAttribute& attribute, json_object* const& pValue);
 };
 
-}
+} // namespace parsers
 
-}
+} // namespace forecast_io
 
 #endif // NOTIFYINGSYNCHRONICDATAPOINTPARSER_HPP

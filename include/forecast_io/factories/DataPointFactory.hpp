@@ -12,11 +12,10 @@ namespace forecast_io
 namespace factories
 {
 
-class DataPointFactory: public common::AbstractFactory<DataPoint>,
-	public listeners::DataPointDetailsListener
+class DataPointFactory : public common::AbstractFactory<DataPoint>,
+                         public listeners::DataPointDetailsListener
 {
 public:
-
 	DataPoint create();
 
 	virtual void notifyCloudCover(double cloudCover);
@@ -35,13 +34,11 @@ public:
 	virtual void notifyWindSpeed(double speed);
 
 private:
-
 	DataPoint result;
-
 };
 
-}
+} // namespace factories
 
-}
+} // namespace forecast_io
 
 #endif // DATAPOINTFACTORY_HPP

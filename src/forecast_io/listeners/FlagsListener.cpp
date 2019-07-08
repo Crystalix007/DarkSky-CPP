@@ -5,7 +5,10 @@ namespace forecast_io
 namespace listeners
 {
 
-void FlagsListener::notifyFlags(Flags& flags) { (void)flags; /*Avoid "unused parameter" warning*/ }
+void FlagsListener::notifyFlags(Flags& flags)
+{
+	(void)flags; /*Avoid "unused parameter" warning*/
+}
 
-}
-}
+} // namespace listeners
+} // namespace forecast_io

@@ -47,8 +47,7 @@ void SingleDataPointFactory::notifyPrecipitationIntensity(double intensity)
 	dataPointFactory.notifyPrecipitationIntensity(intensity);
 }
 
-void SingleDataPointFactory::notifyPrecipitationProbability(
-		double probability)
+void SingleDataPointFactory::notifyPrecipitationProbability(double probability)
 {
 	dataPointFactory.notifyPrecipitationProbability(probability);
 }
@@ -93,7 +92,6 @@ void SingleDataPointFactory::notifyWindSpeed(double speed)
 	dataPointFactory.notifyWindSpeed(speed);
 }
 
-}
+} // namespace factories
 
-}
-
+} // namespace forecast_io

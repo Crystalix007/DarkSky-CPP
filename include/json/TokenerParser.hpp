@@ -19,13 +19,13 @@ public:
 	virtual ~TokenerParser();
 
 	/**
-	* Parses a given character array as input.
-	*
-	* @param[in] input The character array to parse.
-	* @param[in] inputLength The input array length.
-	* @throw ParseException If there was an error while parsing the input as JSON.
-	*/
-	void parse(const char* const & input, int inputLength);
+	 * Parses a given character array as input.
+	 *
+	 * @param[in] input The character array to parse.
+	 * @param[in] inputLength The input array length.
+	 * @throw ParseException If there was an error while parsing the input as JSON.
+	 */
+	void parse(const char* const& input, int inputLength);
 
 	/**
 	 * Parses data from a given input stream using a given character array as a buffer.
@@ -36,8 +36,7 @@ public:
 	 * @return The amount of bytes processed.
 	 * @throw ParseException If there was an error while parsing the input as JSON.
 	 */
-	std::streamsize parse(std::istream& input, char* pBuffer,
-			int bufferSize);
+	std::streamsize parse(std::istream& input, char* pBuffer, int bufferSize);
 
 	AbstractJsonParser& getParser()
 	{
@@ -55,12 +54,10 @@ public:
 	}
 
 private:
-
 	json_tokener* const pTokener;
 	AbstractJsonParser& parser;
-
 };
 
-}
+} // namespace json
 
 #endif // TOKENERPARSER_HPP

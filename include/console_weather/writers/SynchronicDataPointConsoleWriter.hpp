@@ -11,7 +11,7 @@ namespace forecast_io
 class DataPoint;
 class SingleDataPoint;
 class SynchronicDataPoint;
-}
+} // namespace forecast_io
 
 namespace console_weather
 {
@@ -23,12 +23,12 @@ static const common::TimeWriter DEFAULT_TIME_WRITER("%c", 48);
 class SynchronicDataPointConsoleWriter
 {
 public:
-	SynchronicDataPointConsoleWriter(int consoleWidth, common::TimeWriter timeWriter = DEFAULT_TIME_WRITER) noexcept;
+	SynchronicDataPointConsoleWriter(int consoleWidth,
+	                                 common::TimeWriter timeWriter = DEFAULT_TIME_WRITER) noexcept;
 
 	void write(const forecast_io::SynchronicDataPoint& value, std::ostream& output);
 
 private:
-
 	void write(const forecast_io::DataPoint& value, std::ostream& output);
 	void write(const forecast_io::SingleDataPoint& value, std::ostream& output);
 
@@ -37,10 +37,9 @@ private:
 	std::string nearestStormSectionHeader;
 	std::string precipitationSectionHeader;
 	std::string windSectionHeader;
-
 };
 
-}
-}
+} // namespace writers
+} // namespace console_weather
 
 #endif // SYNCHRONICDATAPOINTCONSOLEWRITER_HPP

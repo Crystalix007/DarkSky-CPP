@@ -4,16 +4,13 @@
 namespace math
 {
 
-template<typename B, typename D>
+template <typename B, typename D>
 class RelativePosition
 {
 public:
 	RelativePosition() = default;
 
-	RelativePosition(B bearing, D distance) :
-		bearing(bearing), distance(distance)
-	{
-	}
+	RelativePosition(B bearing, D distance) : bearing(bearing), distance(distance) {}
 
 	// Constant getters ---------------------------------------------------------
 	B getBearing() const
@@ -38,12 +35,10 @@ public:
 	}
 
 private:
-
 	B bearing;
 	D distance;
-
 };
 
-}
+} // namespace math
 
 #endif // RELATIVEPOSITION_HPP

@@ -15,19 +15,21 @@ static void insertDefaultMeasurementSystemNames(MeasurementSystemNameArray& resu
 }
 
 // Class members --------------------------------------------------------------
-std::unique_ptr<MeasurementSystemNameArray> MeasurementSystemDefaultNameArrayHolder::pInstance = nullptr;
+std::unique_ptr<MeasurementSystemNameArray> MeasurementSystemDefaultNameArrayHolder::pInstance =
+    nullptr;
 
-const std::string& MeasurementSystemDefaultNameArrayHolder::getName(const math::MeasurementSystem measurementSystem)
+const std::string&
+MeasurementSystemDefaultNameArrayHolder::getName(const math::MeasurementSystem measurementSystem)
 {
 	const MeasurementSystemNameArray& defaultMeasurementSystemNames = *getInstance();
 	const size_t measurementSystemNameIndex = common::getEnumIndex(measurementSystem);
 	return (defaultMeasurementSystemNames)[measurementSystemNameIndex];
 }
 
-std::unique_ptr<MeasurementSystemNameArray> MeasurementSystemDefaultNameArrayHolder::createInstance()
+std::unique_ptr<MeasurementSystemNameArray>
+MeasurementSystemDefaultNameArrayHolder::createInstance()
 {
-	std::unique_ptr<MeasurementSystemNameArray> result(
-			new MeasurementSystemNameArray());
+	std::unique_ptr<MeasurementSystemNameArray> result(new MeasurementSystemNameArray());
 	insertDefaultMeasurementSystemNames(*result);
 	return result;
 }

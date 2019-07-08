@@ -9,7 +9,10 @@ class Alert;
 namespace listeners
 {
 
-void AlertsListener::notifyAlert(Alert& alert) { (void)alert; /*Avoid "unused parameter" warning*/ }
+void AlertsListener::notifyAlert(Alert& alert)
+{
+	(void)alert; /*Avoid "unused parameter" warning*/
+}
 
-}
-}
+} // namespace listeners
+} // namespace forecast_io

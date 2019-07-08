@@ -18,11 +18,10 @@ class FlagsConsoleWriter
 {
 
 public:
-
 	virtual void write(const forecast_io::Flags& value, std::ostream& output);
 };
 
-}
-}
+} // namespace writers
+} // namespace console_weather
 
 #endif // FLAGSCONSOLEWRITER_HPP

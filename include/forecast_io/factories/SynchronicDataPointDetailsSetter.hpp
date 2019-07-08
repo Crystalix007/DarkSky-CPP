@@ -1,11 +1,11 @@
 #ifndef SYNCHRONICDATAPOINTDETAILSSETTER_HPP
 #define SYNCHRONICDATAPOINTDETAILSSETTER_HPP
 
-#include "../listeners/SynchronicDataPointDetailsListener.hpp" // Base class: forecast_io::listeners::SynchronicDataPointDetailsListener
 #include "../../common/InstanceReferenceHolder.hpp" // Base class: common::InstanceReferenceHolder
+#include "../listeners/SynchronicDataPointDetailsListener.hpp" // Base class: forecast_io::listeners::SynchronicDataPointDetailsListener
 
-#include "SingleDataPointDetailsSetter.hpp"
 #include "../SynchronicDataPoint.hpp"
+#include "SingleDataPointDetailsSetter.hpp"
 
 namespace forecast_io
 {
@@ -13,9 +13,8 @@ namespace forecast_io
 namespace factories
 {
 
-class SynchronicDataPointDetailsSetter:
-	public listeners::SynchronicDataPointDetailsListener,
-	public common::InstanceReferenceHolder<SynchronicDataPoint>
+class SynchronicDataPointDetailsSetter : public listeners::SynchronicDataPointDetailsListener,
+                                         public common::InstanceReferenceHolder<SynchronicDataPoint>
 {
 public:
 	SynchronicDataPointDetailsSetter(SynchronicDataPoint& instance) noexcept;
@@ -40,13 +39,11 @@ public:
 	virtual void notifyWindSpeed(double speed);
 
 private:
-
 	SingleDataPointDetailsSetter singleDataPointDetailsSetter;
-
 };
 
-}
+} // namespace factories
 
-}
+} // namespace forecast_io
 
 #endif // SYNCHRONICDATAPOINTDETAILSSETTER_HPP

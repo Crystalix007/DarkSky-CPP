@@ -15,16 +15,16 @@
 namespace forecast_io
 {
 
-
 class Forecast
 {
 public:
-
 	// Typedefs
 	typedef signed char time_offset_t;
 
 	Forecast(Flags flags) noexcept;
-	Forecast(Flags flags, std::vector<Alert> alerts, math::Coordinate location, time_offset_t offset, std::string timezone, SynchronicDataPoint currentWeather, DataBlock minutelyWeather, DataBlock hourlyWeather) noexcept;
+	Forecast(Flags flags, std::vector<Alert> alerts, math::Coordinate location,
+	         time_offset_t offset, std::string timezone, SynchronicDataPoint currentWeather,
+	         DataBlock minutelyWeather, DataBlock hourlyWeather) noexcept;
 
 	// Constant getters ---------------------------------------------------------
 	const std::vector<Alert>& getAlerts() const
@@ -141,8 +141,6 @@ public:
 	}
 
 private:
-
-
 	std::vector<Alert> alerts;
 	Flags flags;
 	math::Coordinate location;
@@ -152,10 +150,9 @@ private:
 	SynchronicDataPoint currentWeather;
 	DataBlock minutelyWeather;
 	DataBlock hourlyWeather;
-
 };
 
-}
+} // namespace forecast_io
 
 namespace std
 {

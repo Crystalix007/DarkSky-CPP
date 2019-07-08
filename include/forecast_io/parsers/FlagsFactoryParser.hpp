@@ -23,14 +23,15 @@ namespace parsers
 class NotifyingFlagParser;
 
 /**
- * NOTE: This class extends NotifyingFlagParser so that it can be used as a drop-in replacement thereof in DelegatingForecastParser, allowing tree-like Forecast objects to be created.
- * Don't forget this and try to refactor!
+ * NOTE: This class extends NotifyingFlagParser so that it can be used as a drop-in replacement
+ * thereof in DelegatingForecastParser, allowing tree-like Forecast objects to be created. Don't
+ * forget this and try to refactor!
  */
-class FlagsFactoryParser: public NotifyingFlagParser
+class FlagsFactoryParser : public NotifyingFlagParser
 {
 public:
 	FlagsFactoryParser(listeners::FlagsListener* pFlagsListener,
-			factories::FlagsFactory* pFactory) noexcept;
+	                   factories::FlagsFactory* pFactory) noexcept;
 
 	std::unordered_set<listeners::FlagsListener*>& getFlagsListeners()
 	{
@@ -42,16 +43,15 @@ public:
 		return flagsListeners;
 	}
 
-	virtual void parse(json_object* const & pJsonObj);
+	virtual void parse(json_object* const& pJsonObj);
 
 private:
 	factories::FlagsFactory* pFactory;
 	std::unordered_set<listeners::FlagsListener*> flagsListeners;
-
 };
 
-}
+} // namespace parsers
 
-}
+} // namespace forecast_io
 
 #endif // FLAGSFACTORYPARSER_HPP

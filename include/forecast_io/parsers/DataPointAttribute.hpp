@@ -51,12 +51,11 @@ enum DataPointAttribute
 	DataPointAttribute_COUNT = DataPointAttribute_MAX + 1
 };
 
-
 // Typedefs
 typedef std::unordered_map<std::string, DataPointAttribute> DataPointAttributeNameMap;
 
-}
+} // namespace parsers
 
-}
+} // namespace forecast_io
 
 #endif // DATAPOINTATTRIBUTE_HPP

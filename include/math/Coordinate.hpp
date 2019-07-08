@@ -10,7 +10,6 @@ namespace math
 class Coordinate
 {
 public:
-
 	static std::string createLatitudeString(double latitude);
 	static std::string createLongitudeString(double longitude);
 
@@ -18,7 +17,7 @@ public:
 	Coordinate(const Coordinate& copyee) = default;
 	virtual ~Coordinate() = default;
 
-	virtual Coordinate& operator= (const Coordinate& other) = default;
+	virtual Coordinate& operator=(const Coordinate& other) = default;
 
 	virtual std::ostream& dump(std::ostream& o) const;
 	virtual std::string str() const;
@@ -50,7 +49,6 @@ public:
 	}
 
 protected:
-
 	// Typedefs
 	typedef std::pair<double, double> coord_t;
 
@@ -72,12 +70,10 @@ protected:
 	}
 
 private:
-
 	coord_t coordinatePoint;
-
 };
 
-}
+} // namespace math
 
 namespace std
 {

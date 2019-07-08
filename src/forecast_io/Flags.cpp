@@ -7,29 +7,18 @@
 namespace forecast_io
 {
 
-
 Flags::Flags(math::MeasurementSystem units) noexcept
-:
-	Flags(true,
-	false,
-	std::unordered_set<std::string>(),
-	std::unordered_multimap<std::string, std::string>(),
-	units)
+    : Flags(true, false, std::unordered_set<std::string>(),
+            std::unordered_multimap<std::string, std::string>(), units)
 {
 }
 
-Flags::Flags(bool darkskyUnavailable,
-			bool metnoLicense,
-			std::unordered_set<std::string> sources,
-			std::unordered_multimap<std::string, std::string> stations,
-			math::MeasurementSystem units) noexcept :
-		darkskyUnavailable(darkskyUnavailable),
-		metnoLicense(metnoLicense),
-		sources(sources),
-		stations(stations),
-		units(units)
+Flags::Flags(bool darkskyUnavailable, bool metnoLicense, std::unordered_set<std::string> sources,
+             std::unordered_multimap<std::string, std::string> stations,
+             math::MeasurementSystem units) noexcept
+    : darkskyUnavailable(darkskyUnavailable), metnoLicense(metnoLicense), sources(sources),
+      stations(stations), units(units)
 {
-
 }
 
 std::ostream& Flags::dump(std::ostream& o) const
@@ -56,10 +45,9 @@ std::string Flags::str() const
 	std::stringstream ss(std::stringstream::out);
 	dump(ss);
 	return ss.str();
-
 }
 
-}
+} // namespace forecast_io
 
 namespace std
 {
@@ -69,10 +57,9 @@ string to_string(const forecast_io::Flags& value)
 	return value.str();
 }
 
-}
+} // namespace std
 
 std::ostream& operator<<(std::ostream& o, const forecast_io::Flags& value)
 {
 	return value.dump(o);
 }
-

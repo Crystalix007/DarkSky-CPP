@@ -7,18 +7,15 @@
 
 #include "../math/MeasurementSystem.hpp"
 
-
 namespace forecast_io
 {
 
 // Typedefs
 typedef std::array<std::string, math::MeasurementSystem_COUNT> MeasurementSystemNameArray;
 
-
 class MeasurementSystemDefaultNameArrayHolder
 {
 public:
-
 	static std::unique_ptr<MeasurementSystemNameArray>& getInstance()
 	{
 		return loadInstanceLazily();
@@ -32,7 +29,6 @@ public:
 	}
 
 private:
-
 	static std::unique_ptr<MeasurementSystemNameArray> pInstance;
 
 	static std::unique_ptr<MeasurementSystemNameArray> createInstance();
@@ -45,9 +41,8 @@ private:
 		}
 		return pInstance;
 	}
-
 };
 
-}
+} // namespace forecast_io
 
 #endif // MEASUREMENTSYSTEMDEFAULTNAMEARRAYHOLDER_HPP

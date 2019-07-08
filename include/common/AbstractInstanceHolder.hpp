@@ -11,11 +11,10 @@
 namespace common
 {
 
-template<typename T>
+template <typename T>
 class AbstractInstanceHolder
 {
 public:
-
 	virtual ~AbstractInstanceHolder() = default;
 
 	virtual const T& getInstance() const = 0;

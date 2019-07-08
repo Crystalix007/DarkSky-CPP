@@ -7,24 +7,22 @@
 #include <string>
 #include <unordered_map>
 
-#include "ParseError.hpp"
 #include "../common/to_string.hpp"
+#include "ParseError.hpp"
 
 namespace json
 {
 
-template<typename A>
-class AbstractJsonStateMapParser: public AbstractJsonParser
+template <typename A>
+class AbstractJsonStateMapParser : public AbstractJsonParser
 {
 public:
-
-	AbstractJsonStateMapParser(
-			const std::unordered_map<std::string, A>& attributeNames) :
-			attributeNames(attributeNames)
+	AbstractJsonStateMapParser(const std::unordered_map<std::string, A>& attributeNames)
+	    : attributeNames(attributeNames)
 	{
 	}
 
-	void parse(json_object* const & pJsonObj)
+	void parse(json_object* const& pJsonObj)
 	{
 		// Parse JSON data values
 		json_object_object_foreach(pJsonObj, key, value)
@@ -36,18 +34,16 @@ public:
 	}
 
 protected:
-
-	static std::string createUndefinedAttributeErrorMessage(
-			const std::string& attributeType, const A& attribute)
+	static std::string createUndefinedAttributeErrorMessage(const std::string& attributeType,
+	                                                        const A& attribute)
 	{
 		std::stringstream errorMessage(std::stringstream::out);
 		errorMessage << "No parsing logic for " << attributeType << " value "
-				<< common::to_quoted_string(attribute) << " is defined.";
+		             << common::to_quoted_string(attribute) << " is defined.";
 		return errorMessage.str();
 	}
 
-	static std::string createUnknownAttributeErrorMessage(
-			const std::string& key)
+	static std::string createUnknownAttributeErrorMessage(const std::string& key)
 	{
 		std::stringstream errorMessage(std::stringstream::out);
 		errorMessage << "Unknown JSON attribute name encountered: " << key;
@@ -59,19 +55,18 @@ protected:
 		// By default do nothing
 	}
 
-	virtual void handleUnmappedAttribute(const std::string& key, json_object* const & pValue)
+	virtual void handleUnmappedAttribute(const std::string& key, json_object* const& pValue)
 	{
 		(void)pValue; // Prevent "unused parameter" warning
 		throw json::ParseError(createUnknownAttributeErrorMessage(key));
 	}
 
-	virtual void parseAttribute(const A& attribute, json_object* const & pValue) = 0;
+	virtual void parseAttribute(const A& attribute, json_object* const& pValue) = 0;
 
 private:
-
 	const std::unordered_map<std::string, A>& attributeNames;
 
-	void parseAttribute(const std::string& key, json_object* const & pValue)
+	void parseAttribute(const std::string& key, json_object* const& pValue)
 	{
 		auto iter = attributeNames.find(key);
 		if (iter == attributeNames.end())
@@ -84,9 +79,8 @@ private:
 			parseAttribute(attribute, pValue);
 		}
 	}
-
 };
 
-}
+} // namespace json
 
 #endif // ABSTRACTJSONSTATEMAPPARSER_HPP

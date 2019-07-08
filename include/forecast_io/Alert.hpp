@@ -14,12 +14,11 @@ class Alert
 
 public:
 	Alert() = default;
-	Alert(std::string title, time_t expiryTime, std::string description,
-			std::string uri) noexcept;
+	Alert(std::string title, time_t expiryTime, std::string description, std::string uri) noexcept;
 	Alert(const Alert& copyee) = default;
 	virtual ~Alert() = default;
 
-	virtual Alert& operator= (const Alert& other) = default;
+	virtual Alert& operator=(const Alert& other) = default;
 
 	virtual bool operator==(const Alert& other) const
 	{
@@ -75,34 +74,31 @@ public:
 	}
 
 private:
-
 	std::string title;
 	time_t expiryTime;
 	std::string description;
 	std::string uri;
-
 };
 
-}
+} // namespace forecast_io
 
 // Standard-library template extensions
 namespace std
 {
 
-template<>
+template <>
 struct equal_to<forecast_io::Alert>
 {
-	bool operator()(const forecast_io::Alert& first,
-			const forecast_io::Alert& second) const
+	bool operator()(const forecast_io::Alert& first, const forecast_io::Alert& second) const
 	{
 		return first.equal_to(second);
 	}
 };
 
-template<>
+template <>
 struct hash<forecast_io::Alert>
 {
-	size_t operator ()(const forecast_io::Alert& value) const
+	size_t operator()(const forecast_io::Alert& value) const
 	{
 		return value.hash();
 	}
@@ -110,7 +106,7 @@ struct hash<forecast_io::Alert>
 
 string to_string(const forecast_io::Alert& value);
 
-}
+} // namespace std
 
 std::ostream& operator<<(std::ostream& o, const forecast_io::Alert& value);
 

@@ -9,193 +9,190 @@ namespace parsers
 {
 
 NotifyingSynchronicDataPointParser::NotifyingSynchronicDataPointParser(
-		listeners::SynchronicDataPointDetailsListener* pListener,
-		const DataPointAttributeNameMap& attributeNames) noexcept :
-		AbstractJsonStateMapParser(attributeNames), Notifier(pListener)
+    listeners::SynchronicDataPointDetailsListener* pListener,
+    const DataPointAttributeNameMap& attributeNames) noexcept
+    : AbstractJsonStateMapParser(attributeNames), Notifier(pListener)
 {
 }
 
 // Members ----------------------------------------------------------------------
 
-void NotifyingSynchronicDataPointParser::parseAttribute(
-		const DataPointAttribute& attribute, json_object* const & pValue)
+void NotifyingSynchronicDataPointParser::parseAttribute(const DataPointAttribute& attribute,
+                                                        json_object* const& pValue)
 {
 	switch (attribute)
 	{
-	case APPARENT_TEMPERATURE:
-	{
-		const double apparentTemperature(json_object_get_double(pValue));
-		for (listeners::SynchronicDataPointDetailsListener* const & pListener : getListeners())
+		case APPARENT_TEMPERATURE:
 		{
-			pListener->notifyApparentTemperature(apparentTemperature);
+			const double apparentTemperature(json_object_get_double(pValue));
+			for (listeners::SynchronicDataPointDetailsListener* const& pListener : getListeners())
+			{
+				pListener->notifyApparentTemperature(apparentTemperature);
+			}
+			break;
 		}
-		break;
-	}
-	case CLOUD_COVER:
-	{
-		const double cloudCover(json_object_get_double(pValue));
-		for (listeners::SynchronicDataPointDetailsListener* const & pListener : getListeners())
+		case CLOUD_COVER:
 		{
-			pListener->notifyCloudCover(cloudCover);
+			const double cloudCover(json_object_get_double(pValue));
+			for (listeners::SynchronicDataPointDetailsListener* const& pListener : getListeners())
+			{
+				pListener->notifyCloudCover(cloudCover);
+			}
+			break;
 		}
-		break;
-	}
-	case DEW_POINT:
-	{
-		const double dewPoint(json_object_get_double(pValue));
-		for (listeners::SynchronicDataPointDetailsListener* const & pListener : getListeners())
+		case DEW_POINT:
 		{
-			pListener->notifyDewPoint(dewPoint);
+			const double dewPoint(json_object_get_double(pValue));
+			for (listeners::SynchronicDataPointDetailsListener* const& pListener : getListeners())
+			{
+				pListener->notifyDewPoint(dewPoint);
+			}
+			break;
 		}
-		break;
-	}
-	case HUMIDITY:
-	{
-		const double humidity(json_object_get_double(pValue));
-		for (listeners::SynchronicDataPointDetailsListener* const & pListener : getListeners())
+		case HUMIDITY:
 		{
-			pListener->notifyHumidity(humidity);
+			const double humidity(json_object_get_double(pValue));
+			for (listeners::SynchronicDataPointDetailsListener* const& pListener : getListeners())
+			{
+				pListener->notifyHumidity(humidity);
+			}
+			break;
 		}
-		break;
-	}
-	case ICON:
-	{
-		const std::string iconName(json_object_get_string(pValue));
-		for (listeners::SynchronicDataPointDetailsListener* const & pListener : getListeners())
+		case ICON:
 		{
-			pListener->notifyIcon(iconName);
+			const std::string iconName(json_object_get_string(pValue));
+			for (listeners::SynchronicDataPointDetailsListener* const& pListener : getListeners())
+			{
+				pListener->notifyIcon(iconName);
+			}
+			break;
 		}
-		break;
-	}
-	case NEAREST_STORM_BEARING:
-	{
-		const double bearing(json_object_get_double(pValue));
-		for (listeners::SynchronicDataPointDetailsListener* const & pListener : getListeners())
+		case NEAREST_STORM_BEARING:
 		{
-			pListener->notifyNearestStormBearing(bearing);
+			const double bearing(json_object_get_double(pValue));
+			for (listeners::SynchronicDataPointDetailsListener* const& pListener : getListeners())
+			{
+				pListener->notifyNearestStormBearing(bearing);
+			}
+			break;
 		}
-		break;
-	}
-	case NEAREST_STORM_DISTANCE:
-	{
-		const double distance(json_object_get_double(pValue));
-		for (listeners::SynchronicDataPointDetailsListener* const & pListener : getListeners())
+		case NEAREST_STORM_DISTANCE:
 		{
-			pListener->notifyNearestStormDistance(distance);
+			const double distance(json_object_get_double(pValue));
+			for (listeners::SynchronicDataPointDetailsListener* const& pListener : getListeners())
+			{
+				pListener->notifyNearestStormDistance(distance);
+			}
+			break;
 		}
-		break;
-	}
-	case OZONE:
-	{
-		const double ozone(json_object_get_double(pValue));
-		for (listeners::SynchronicDataPointDetailsListener* const & pListener : getListeners())
+		case OZONE:
 		{
-			pListener->notifyOzone(ozone);
+			const double ozone(json_object_get_double(pValue));
+			for (listeners::SynchronicDataPointDetailsListener* const& pListener : getListeners())
+			{
+				pListener->notifyOzone(ozone);
+			}
+			break;
 		}
-		break;
-	}
-	case PRECIPITATION_INTENSITY:
-	{
-		const double precipitationIntensity(json_object_get_double(pValue));
-		for (listeners::SynchronicDataPointDetailsListener* const & pListener : getListeners())
+		case PRECIPITATION_INTENSITY:
 		{
-			pListener->notifyPrecipitationIntensity(precipitationIntensity);
+			const double precipitationIntensity(json_object_get_double(pValue));
+			for (listeners::SynchronicDataPointDetailsListener* const& pListener : getListeners())
+			{
+				pListener->notifyPrecipitationIntensity(precipitationIntensity);
+			}
+			break;
 		}
-		break;
-	}
-	case PRECIPITATION_PROBABILITY:
-	{
-		const double precipitationProbability(json_object_get_double(pValue));
-		for (listeners::SynchronicDataPointDetailsListener* const & pListener : getListeners())
+		case PRECIPITATION_PROBABILITY:
 		{
-			pListener->notifyPrecipitationProbability(precipitationProbability);
+			const double precipitationProbability(json_object_get_double(pValue));
+			for (listeners::SynchronicDataPointDetailsListener* const& pListener : getListeners())
+			{
+				pListener->notifyPrecipitationProbability(precipitationProbability);
+			}
+			break;
 		}
-		break;
-	}
-	case PRECIPITATION_TYPE:
-	{
-		// NOTE: "currently" data blocks often don't have this attribute
-		const std::string precipitationType(json_object_get_string(pValue));
-		for (listeners::SynchronicDataPointDetailsListener* const & pListener : getListeners())
+		case PRECIPITATION_TYPE:
 		{
-			pListener->notifyPrecipitationType(precipitationType);
+			// NOTE: "currently" data blocks often don't have this attribute
+			const std::string precipitationType(json_object_get_string(pValue));
+			for (listeners::SynchronicDataPointDetailsListener* const& pListener : getListeners())
+			{
+				pListener->notifyPrecipitationType(precipitationType);
+			}
+			break;
 		}
-		break;
-	}
-	case PRESSURE:
-	{
-		const double pressure(json_object_get_double(pValue));
-		for (listeners::SynchronicDataPointDetailsListener* const & pListener : getListeners())
+		case PRESSURE:
 		{
-			pListener->notifyPressure(pressure);
+			const double pressure(json_object_get_double(pValue));
+			for (listeners::SynchronicDataPointDetailsListener* const& pListener : getListeners())
+			{
+				pListener->notifyPressure(pressure);
+			}
+			break;
 		}
-		break;
-	}
-	case SUMMARY:
-	{
-		const std::string summary(json_object_get_string(pValue));
-		for (listeners::SynchronicDataPointDetailsListener* const & pListener : getListeners())
+		case SUMMARY:
 		{
-			pListener->notifySummary(summary);
+			const std::string summary(json_object_get_string(pValue));
+			for (listeners::SynchronicDataPointDetailsListener* const& pListener : getListeners())
+			{
+				pListener->notifySummary(summary);
+			}
+			break;
 		}
-		break;
-	}
-	case DataPointAttribute::TEMPERATURE:
-	{
-		const double temperature(json_object_get_double(pValue));
-		for (listeners::SynchronicDataPointDetailsListener* const & pListener : getListeners())
+		case DataPointAttribute::TEMPERATURE:
 		{
-			pListener->notifyTemperature(temperature);
+			const double temperature(json_object_get_double(pValue));
+			for (listeners::SynchronicDataPointDetailsListener* const& pListener : getListeners())
+			{
+				pListener->notifyTemperature(temperature);
+			}
+			break;
 		}
-		break;
-	}
-	case TIME:
-	{
-		const time_t time(static_cast<time_t>(json_object_get_int64(pValue)));
-		for (listeners::SynchronicDataPointDetailsListener* const & pListener : getListeners())
+		case TIME:
 		{
-			pListener->notifyTime(time);
+			const time_t time(static_cast<time_t>(json_object_get_int64(pValue)));
+			for (listeners::SynchronicDataPointDetailsListener* const& pListener : getListeners())
+			{
+				pListener->notifyTime(time);
+			}
+			break;
 		}
-		break;
-	}
-	case VISIBILITY:
-	{
-		const double visibility(json_object_get_double(pValue));
-		for (listeners::SynchronicDataPointDetailsListener* const & pListener : getListeners())
+		case VISIBILITY:
 		{
-			pListener->notifyVisibility(visibility);
+			const double visibility(json_object_get_double(pValue));
+			for (listeners::SynchronicDataPointDetailsListener* const& pListener : getListeners())
+			{
+				pListener->notifyVisibility(visibility);
+			}
+			break;
 		}
-		break;
-	}
-	case WIND_BEARING:
-	{
-		const double windBearing(json_object_get_double(pValue));
-		for (listeners::SynchronicDataPointDetailsListener* const & pListener : getListeners())
+		case WIND_BEARING:
 		{
-			pListener->notifyWindBearing(windBearing);
+			const double windBearing(json_object_get_double(pValue));
+			for (listeners::SynchronicDataPointDetailsListener* const& pListener : getListeners())
+			{
+				pListener->notifyWindBearing(windBearing);
+			}
+			break;
 		}
-		break;
-	}
-	case WIND_SPEED:
-	{
-		const double windSpeed(json_object_get_double(pValue));
-		for (listeners::SynchronicDataPointDetailsListener* const & pListener : getListeners())
+		case WIND_SPEED:
 		{
-			pListener->notifyWindSpeed(windSpeed);
+			const double windSpeed(json_object_get_double(pValue));
+			for (listeners::SynchronicDataPointDetailsListener* const& pListener : getListeners())
+			{
+				pListener->notifyWindSpeed(windSpeed);
+			}
+			break;
 		}
-		break;
+		default:
+		{
+			throw std::logic_error(
+			    createUndefinedAttributeErrorMessage(DataPointAttribute_NAME, attribute));
+		}
 	}
-	default:
-	{
-		throw std::logic_error(
-				createUndefinedAttributeErrorMessage(DataPointAttribute_NAME,
-						attribute));
-	}
-	}
-
 }
 
-}
+} // namespace parsers
 
-}
-
+} // namespace forecast_io

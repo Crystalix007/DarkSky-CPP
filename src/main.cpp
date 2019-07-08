@@ -22,22 +22,26 @@
 #include "forecast_io/parsers/NotifyingFlagParser.hpp"
 #include "forecast_io/parsers/NotifyingForecastParser.hpp"
 #include "forecast_io/parsers/ParserManager.hpp"
-#include "json/TokenerParser.hpp"
 #include "json/ParseError.hpp"
+#include "json/TokenerParser.hpp"
 
 static constexpr math::MeasurementSystem DEFAULT_MEASUREMENT_UNITS = math::MeasurementSystem::SI;
 static constexpr int DEFAULT_READ_BUFFER_SIZE = 64 * 1024;
-static constexpr const char* const & DEFAULT_URL_GETTER_ERROR_MESSAGE = "An error occurred while getting the given URL.";
-static const std::regex VALID_CONTENT_TYPE_REGEX(".+?/json", std::regex_constants::icase | std::regex_constants::optimize);
+static constexpr const char* const& DEFAULT_URL_GETTER_ERROR_MESSAGE =
+    "An error occurred while getting the given URL.";
+static const std::regex VALID_CONTENT_TYPE_REGEX(".+?/json", std::regex_constants::icase |
+                                                                 std::regex_constants::optimize);
 
 static void printCurlErrorMessage(const char* const& pCurlErrorMessage)
 {
 	if (std::strcmp(pCurlErrorMessage, "") == 0)
 	{
 		std::cerr << DEFAULT_URL_GETTER_ERROR_MESSAGE << std::endl;
-	} else
+	}
+	else
 	{
-		std::cerr << "An error occurred while getting the given URL: " << pCurlErrorMessage << std::endl;
+		std::cerr << "An error occurred while getting the given URL: " << pCurlErrorMessage
+		          << std::endl;
 	}
 }
 
@@ -56,7 +60,8 @@ static std::string createUsageMessage(const char* const& pExecutableName)
 	return ss.str();
 }
 
-static bool isLastResponseContentInvalid(const curl::CallbackClient& curlClient, char* const& pInfoBuffer)
+static bool isLastResponseContentInvalid(const curl::CallbackClient& curlClient,
+                                         char* const& pInfoBuffer)
 {
 	bool result(false);
 
@@ -82,19 +87,23 @@ static int readJsonStream(std::istream& input)
 {
 	int result(EXIT_FAILURE);
 
-	console_weather::ForecastStreamReader forecastReader(DEFAULT_MEASUREMENT_UNITS, DEFAULT_READ_BUFFER_SIZE);
-	try {
+	console_weather::ForecastStreamReader forecastReader(DEFAULT_MEASUREMENT_UNITS,
+	                                                     DEFAULT_READ_BUFFER_SIZE);
+	try
+	{
 		std::unique_ptr<forecast_io::Forecast> pForecast = forecastReader.read(input);
 		if (pForecast == nullptr)
 		{
 			std::cerr << DEFAULT_URL_GETTER_ERROR_MESSAGE << std::endl;
 			result = common::getSysExitCode(common::SysExit::IO_DEVICE_ERROR);
-		} else
+		}
+		else
 		{
 			print(*pForecast);
 			result = EXIT_SUCCESS;
 		}
-	} catch(const json::ParseError& e)
+	}
+	catch (const json::ParseError& e)
 	{
 		std::cerr << createJsonParseErrorMessage(e) << std::endl;
 	}
@@ -110,23 +119,30 @@ static int readUrl(const char* pUrl)
 	CURLcode initCode(curl_global_init(CURL_GLOBAL_DEFAULT));
 	if (CURLE_OK == initCode)
 	{
-		try {
-			std::unique_ptr<char[]> pErrorBuffer(new char[CURL_ERROR_SIZE]); // The buffer to which cURL handle error messages are written
+		try
+		{
+			std::unique_ptr<char[]> pErrorBuffer(
+			    new char[CURL_ERROR_SIZE]); // The buffer to which cURL handle error messages are
+			                                // written
 			curl::CallbackClient curlClient(pErrorBuffer.get());
 			curlClient.addHeader("Accept: application/json, text/json");
-			try {
-				console_weather::ForecastServiceClient forecastClient(curlClient, DEFAULT_MEASUREMENT_UNITS);
+			try
+			{
+				console_weather::ForecastServiceClient forecastClient(curlClient,
+				                                                      DEFAULT_MEASUREMENT_UNITS);
 				std::unique_ptr<forecast_io::Forecast> pForecast = forecastClient.get(pUrl);
 				if (pForecast == nullptr)
 				{
 					printCurlErrorMessage(pErrorBuffer.get());
 					result = common::getSysExitCode(common::SysExit::HOST_UNAVAILABLE);
-				} else
+				}
+				else
 				{
 					print(*pForecast);
 					result = EXIT_SUCCESS;
 				}
-			} catch (const CURLcode& getterCode)
+			}
+			catch (const CURLcode& getterCode)
 			{
 				const char* pCurlErrorMessage = pErrorBuffer.get();
 				if (std::strcmp(pCurlErrorMessage, "") == 0)
@@ -135,7 +151,8 @@ static int readUrl(const char* pUrl)
 				}
 				printCurlErrorMessage(pCurlErrorMessage);
 				result = common::getSysExitCode(common::SysExit::INTERNAL_ERROR);
-			} catch (const json::ParseError& e)
+			}
+			catch (const json::ParseError& e)
 			{
 				std::cerr << createJsonParseErrorMessage(e) << std::endl;
 
@@ -143,10 +160,12 @@ static int readUrl(const char* pUrl)
 				char* pInfoBuffer = NULL;
 				if (isLastResponseContentInvalid(curlClient, pInfoBuffer))
 				{
-					std::cerr << "The response content type was expected to be JSON but was \"" << pInfoBuffer << "\" instead." << std::endl;
+					std::cerr << "The response content type was expected to be JSON but was \""
+					          << pInfoBuffer << "\" instead." << std::endl;
 				}
 			}
-		} catch (const CURLcode& handleInitCode)
+		}
+		catch (const CURLcode& handleInitCode)
 		{
 			printCurlErrorMessage(curl_easy_strerror(handleInitCode));
 			result = common::getSysExitCode(common::SysExit::INTERNAL_ERROR);
@@ -154,10 +173,12 @@ static int readUrl(const char* pUrl)
 
 		// De-initialise cURL
 		curl_global_cleanup();
-	} else
+	}
+	else
 	{
 		const char* pCurlErrorMessage = curl_easy_strerror(initCode);
-		std::cerr << "An error occurred while initialising the cURL library: " << pCurlErrorMessage << std::endl;
+		std::cerr << "An error occurred while initialising the cURL library: " << pCurlErrorMessage
+		          << std::endl;
 		result = common::getSysExitCode(common::SysExit::INTERNAL_ERROR);
 	}
 
@@ -168,25 +189,23 @@ int main(int argc, char** argv)
 {
 	int result(EXIT_FAILURE);
 
-	if(argc > 2)
+	if (argc > 2)
 	{
 		std::cerr << createUsageMessage(argv[0]);
 		result = common::getSysExitCode(common::SysExit::INVALID_COMMAND_LINE);
 	}
-	else if(argc > 1)
+	else if (argc > 1)
 	{
 		const char* const& input = argv[1];
 		std::ifstream infile(input);
-		if(infile)
+		if (infile)
 		{
-			std::cerr << "Reading from file path \"" << input
-					  << "\"..." << std::endl;
+			std::cerr << "Reading from file path \"" << input << "\"..." << std::endl;
 			result = readJsonStream(infile);
 		}
 		else
 		{
-			std::cerr << "Reading from URL \"" << input
-					  << "\"..." << std::endl;
+			std::cerr << "Reading from URL \"" << input << "\"..." << std::endl;
 			result = readUrl(input);
 		}
 		infile.close();
@@ -200,7 +219,7 @@ int main(int argc, char** argv)
 	return result;
 }
 
-//int main(int argc, char **argv)
+// int main(int argc, char **argv)
 //{
 //	// If the input is coming from a terminal rather than from a pipe,
 //	if(isatty(STDIN_FILENO))

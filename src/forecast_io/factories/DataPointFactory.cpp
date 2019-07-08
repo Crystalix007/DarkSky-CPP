@@ -81,6 +81,5 @@ void DataPointFactory::notifyWindSpeed(double speed)
 	result.getWind().setMagnitude(speed);
 }
 
-}
-}
-
+} // namespace factories
+} // namespace forecast_io

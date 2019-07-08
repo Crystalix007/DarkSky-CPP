@@ -6,7 +6,8 @@ namespace forecast_io
 namespace factories
 {
 
-DataPointDetailsSetter::DataPointDetailsSetter(DataPoint& instance)  noexcept : common::InstanceReferenceHolder<DataPoint>(instance)
+DataPointDetailsSetter::DataPointDetailsSetter(DataPoint& instance) noexcept
+    : common::InstanceReferenceHolder<DataPoint>(instance)
 {
 }
 
@@ -80,8 +81,6 @@ void DataPointDetailsSetter::notifyWindSpeed(double speed)
 	getInstance().getWind().setMagnitude(speed);
 }
 
+} // namespace factories
 
-}
-
-}
-
+} // namespace forecast_io

@@ -3,7 +3,7 @@
 namespace common
 {
 
-template<>
+template <>
 std::string to_quoted_string(const char& value)
 {
 	std::stringstream ss(std::stringstream::out);
@@ -15,7 +15,7 @@ std::string to_quoted_string(const char& value)
 	return ss.str();
 }
 
-template<>
+template <>
 std::string to_quoted_string(const std::string& value)
 {
 	std::stringstream ss(std::stringstream::out);
@@ -27,10 +27,10 @@ std::string to_quoted_string(const std::string& value)
 	return ss.str();
 }
 
-template<>
+template <>
 std::string to_string(const bool& value)
 {
 	return (value ? "true" : "false");
 }
 
-}
+} // namespace common

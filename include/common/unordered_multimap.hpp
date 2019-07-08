@@ -7,13 +7,12 @@
 namespace common
 {
 
-template<typename K, typename V>
-std::unordered_set<K> createKeySet(
-		const std::unordered_multimap<K, V>& multimap)
+template <typename K, typename V>
+std::unordered_set<K> createKeySet(const std::unordered_multimap<K, V>& multimap)
 {
 	std::unordered_set<K> result(multimap.size());
-	for (auto it = multimap.cbegin(), end = multimap.cend(); it != end; it =
-			multimap.equal_range(it->first).second)
+	for (auto it = multimap.cbegin(), end = multimap.cend(); it != end;
+	     it = multimap.equal_range(it->first).second)
 	{
 		result.insert(it->first);
 	}
@@ -21,6 +20,6 @@ std::unordered_set<K> createKeySet(
 	return result;
 }
 
-}
+} // namespace common
 
 #endif // MULTIMAP_EXTENSION_HPP

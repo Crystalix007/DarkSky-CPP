@@ -4,17 +4,15 @@
 namespace common
 {
 
-template<typename T>
+template <typename T>
 class AbstractFactory
 {
 public:
-
 	virtual ~AbstractFactory() = default;
 
 	virtual T create() = 0;
-
 };
 
-}
+} // namespace common
 
 #endif // FACTORY_HPP

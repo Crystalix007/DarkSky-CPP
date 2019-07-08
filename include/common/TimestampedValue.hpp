@@ -6,20 +6,13 @@
 namespace common
 {
 
-template<typename V>
+template <typename V>
 class TimestampedValue
 {
 public:
-	TimestampedValue() : timestamp(0)
-	{
+	TimestampedValue() : timestamp(0) {}
 
-	}
-
-	TimestampedValue(V value, time_t timestamp) :
-			value(value), timestamp(timestamp)
-	{
-
-	}
+	TimestampedValue(V value, time_t timestamp) : value(value), timestamp(timestamp) {}
 
 	// Constant getters ---------------------------------------------------------
 	V getValue() const
@@ -46,9 +39,8 @@ public:
 private:
 	V value;
 	time_t timestamp;
-
 };
 
-}
+} // namespace common
 
 #endif // TIMESTAMPEDVALUE_HPP

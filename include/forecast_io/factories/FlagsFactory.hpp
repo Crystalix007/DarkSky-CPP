@@ -2,7 +2,7 @@
 #define FLAGSFACTORY_HPP
 
 #include "../../common/AbstractFactory.hpp" // Base class: AbstractFactory
-#include "../listeners/FlagListener.hpp" // Base class: forecast_io::listeners::FlagListener
+#include "../listeners/FlagListener.hpp"    // Base class: forecast_io::listeners::FlagListener
 
 #include "../Flags.hpp"
 
@@ -14,11 +14,10 @@ namespace forecast_io
 namespace factories
 {
 
-class FlagsFactory: public common::AbstractFactory<Flags>,
-		public forecast_io::listeners::FlagListener
+class FlagsFactory : public common::AbstractFactory<Flags>,
+                     public forecast_io::listeners::FlagListener
 {
 public:
-
 	FlagsFactory(math::MeasurementSystem defaultUnits) noexcept;
 
 	virtual Flags create();
@@ -40,15 +39,13 @@ public:
 	virtual void notifyUnits(math::MeasurementSystem units);
 
 private:
-
 	math::MeasurementSystem defaultUnits;
 
 	Flags result;
-
 };
 
-}
+} // namespace factories
 
-}
+} // namespace forecast_io
 
 #endif // FLAGSFACTORY_HPP

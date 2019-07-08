@@ -1,8 +1,8 @@
 #ifndef ALERTSFACTORYPARSER_HPP
 #define ALERTSFACTORYPARSER_HPP
 
+#include "../../common/Notifier.hpp"      // Base class: Notifier
 #include "../../json/JsonArrayParser.hpp" // Base class: json::JsonArrayParser
-#include "../../common/Notifier.hpp" // Base class: Notifier
 
 namespace forecast_io
 {
@@ -22,26 +22,22 @@ namespace parsers
 // Forward declarations
 class NotifyingAlertParser;
 
-class AlertsFactoryParser: public json::JsonArrayParser<NotifyingAlertParser>,
-		public common::Notifier<listeners::AlertsListener>
+class AlertsFactoryParser : public json::JsonArrayParser<NotifyingAlertParser>,
+                            public common::Notifier<listeners::AlertsListener>
 {
 public:
-	AlertsFactoryParser(listeners::AlertsListener* pListener,
-			NotifyingAlertParser& alertParser,
-			factories::AlertFactory* pFactory) noexcept;
+	AlertsFactoryParser(listeners::AlertsListener* pListener, NotifyingAlertParser& alertParser,
+	                    factories::AlertFactory* pFactory) noexcept;
 
 protected:
-
-	virtual void handleArrayElement(json_object* const & arrayElement);
+	virtual void handleArrayElement(json_object* const& arrayElement);
 
 private:
-
 	factories::AlertFactory& factory;
-
 };
 
-}
+} // namespace parsers
 
-}
+} // namespace forecast_io
 
 #endif // ALERTSFACTORYPARSER_HPP

@@ -18,11 +18,10 @@ std::unique_ptr<FlagsAttributeNameMap> FlagsAttributeDefaultNameMapHolder::pInst
 std::unique_ptr<FlagsAttributeNameMap> FlagsAttributeDefaultNameMapHolder::createInstance()
 {
 	std::unique_ptr<FlagsAttributeNameMap> result(
-			new FlagsAttributeNameMap(
-					FlagsAttribute::FlagsAttribute_COUNT));
+	    new FlagsAttributeNameMap(FlagsAttribute::FlagsAttribute_COUNT));
 	insertDefaultAttributeNames(*result);
 	return result;
 }
 
-}
-}
+} // namespace parsers
+} // namespace forecast_io

@@ -16,15 +16,13 @@ class Flags
 
 public:
 	Flags(math::MeasurementSystem units) noexcept;
-	Flags(bool darkskyUnavailable,
-			bool metnoLicense,
-			std::unordered_set<std::string> sources,
-			std::unordered_multimap<std::string, std::string> stations,
-			math::MeasurementSystem units) noexcept;
+	Flags(bool darkskyUnavailable, bool metnoLicense, std::unordered_set<std::string> sources,
+	      std::unordered_multimap<std::string, std::string> stations,
+	      math::MeasurementSystem units) noexcept;
 	Flags(const Flags& copyee) = default;
 	virtual ~Flags() = default;
 
-	virtual Flags& operator= (const Flags& other) = default;
+	virtual Flags& operator=(const Flags& other) = default;
 
 	virtual std::ostream& dump(std::ostream& o) const;
 	virtual std::string str() const;
@@ -93,16 +91,14 @@ public:
 	}
 
 private:
-
 	bool darkskyUnavailable;
 	bool metnoLicense;
 	std::unordered_set<std::string> sources;
 	std::unordered_multimap<std::string, std::string> stations;
 	math::MeasurementSystem units;
-
 };
 
-}
+} // namespace forecast_io
 
 namespace std
 {

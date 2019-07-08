@@ -12,7 +12,7 @@ class SynchronicDataPoint
 public:
 	SynchronicDataPoint() = default;
 	SynchronicDataPoint(SingleDataPoint baseDataPoint,
-			math::RelativePosition<double, double> nearestStorm) noexcept;
+	                    math::RelativePosition<double, double> nearestStorm) noexcept;
 
 	// Constant getters ---------------------------------------------------------
 	const SingleDataPoint& getBaseDataPoint() const
@@ -48,13 +48,11 @@ public:
 	}
 
 private:
-
 	SingleDataPoint baseDataPoint;
 
 	math::RelativePosition<double, double> nearestStorm;
-
 };
 
-}
+} // namespace forecast_io
 
 #endif // SYNCHRONICDATAPOINT_HPP

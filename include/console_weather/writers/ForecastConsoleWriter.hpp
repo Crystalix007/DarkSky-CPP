@@ -22,13 +22,11 @@ namespace writers
 class ForecastConsoleWriter
 {
 public:
-
 	ForecastConsoleWriter(int consoleWidth) noexcept;
 
 	void write(const forecast_io::Forecast& value, std::ostream& output);
 
 private:
-
 	AlertConsoleWriter alertWriter;
 	FlagsConsoleWriter flagsWriter;
 	SynchronicDataPointConsoleWriter synchronicDataPointWriter;
@@ -38,12 +36,11 @@ private:
 	std::string flagsSectionHeader;
 	std::string headerRowSeparator;
 
-	template<typename C>
+	template <typename C>
 	void write(const C& alerts, std::ostream& output);
-
 };
 
-}
-}
+} // namespace writers
+} // namespace console_weather
 
 #endif // FORECASTCONSOLEWRITER_HPP

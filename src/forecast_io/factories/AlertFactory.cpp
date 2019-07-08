@@ -31,7 +31,6 @@ void AlertFactory::notifyUri(const std::string& uri)
 	result.setUri(uri);
 }
 
-}
+} // namespace factories
 
-}
-
+} // namespace forecast_io

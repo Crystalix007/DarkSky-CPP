@@ -13,8 +13,7 @@ namespace parsers
 // Free functions ---------------------------------------------------------------
 static AlertAttributeNameMap createDefaultAttributeNameMap()
 {
-	AlertAttributeNameMap result(
-			AlertAttribute::AlertAttribute_COUNT);
+	AlertAttributeNameMap result(AlertAttribute::AlertAttribute_COUNT);
 
 	result["description"] = AlertAttribute::DESCRIPTION;
 	result["expires"] = AlertAttribute::EXPIRY_TIME;
@@ -27,66 +26,64 @@ static AlertAttributeNameMap createDefaultAttributeNameMap()
 // Con-/destructors -------------------------------------------------------------
 
 NotifyingAlertParser::NotifyingAlertParser(listeners::AlertDetailsListener* pListener,
-		const AlertAttributeNameMap& attributeNames) noexcept :
-		AbstractJsonStateMapParser(attributeNames), Notifier(pListener)
+                                           const AlertAttributeNameMap& attributeNames) noexcept
+    : AbstractJsonStateMapParser(attributeNames), Notifier(pListener)
 {
 }
 
 // Members ----------------------------------------------------------------------
 const AlertAttributeNameMap NotifyingAlertParser::DEFAULT_ATTRIBUTE_NAMES =
-		createDefaultAttributeNameMap();
+    createDefaultAttributeNameMap();
 
 void NotifyingAlertParser::parseAttribute(const AlertAttribute& attribute,
-		json_object* const & pValue)
+                                          json_object* const& pValue)
 {
 	switch (attribute)
 	{
-	case AlertAttribute::DESCRIPTION:
-	{
-		const std::string description(json_object_get_string(pValue));
-		for (listeners::AlertDetailsListener* const & pListener : getListeners())
+		case AlertAttribute::DESCRIPTION:
 		{
-			pListener->notifyDescription(description);
+			const std::string description(json_object_get_string(pValue));
+			for (listeners::AlertDetailsListener* const& pListener : getListeners())
+			{
+				pListener->notifyDescription(description);
+			}
+			break;
 		}
-		break;
-	}
-	case AlertAttribute::EXPIRY_TIME:
-	{
-		const time_t expiryTime(
-				static_cast<time_t>(json_object_get_int64(pValue)));
-		for (listeners::AlertDetailsListener* const & pListener : getListeners())
+		case AlertAttribute::EXPIRY_TIME:
 		{
-			pListener->notifyExpiryTime(expiryTime);
+			const time_t expiryTime(static_cast<time_t>(json_object_get_int64(pValue)));
+			for (listeners::AlertDetailsListener* const& pListener : getListeners())
+			{
+				pListener->notifyExpiryTime(expiryTime);
+			}
+			break;
 		}
-		break;
-	}
-	case AlertAttribute::TITLE:
-	{
-		const std::string title(json_object_get_string(pValue));
-		for (listeners::AlertDetailsListener* const & pListener : getListeners())
+		case AlertAttribute::TITLE:
 		{
-			pListener->notifyTitle(title);
+			const std::string title(json_object_get_string(pValue));
+			for (listeners::AlertDetailsListener* const& pListener : getListeners())
+			{
+				pListener->notifyTitle(title);
+			}
+			break;
 		}
-		break;
-	}
-	case AlertAttribute::URI:
-	{
-		const std::string uri(json_object_get_string(pValue));
-		for (listeners::AlertDetailsListener* const & pListener : getListeners())
+		case AlertAttribute::URI:
 		{
-			pListener->notifyUri(uri);
+			const std::string uri(json_object_get_string(pValue));
+			for (listeners::AlertDetailsListener* const& pListener : getListeners())
+			{
+				pListener->notifyUri(uri);
+			}
+			break;
 		}
-		break;
-	}
-	default:
-	{
-		throw std::logic_error(
-				createUndefinedAttributeErrorMessage(AlertAttribute_NAME,
-						attribute));
-		break;
-	}
+		default:
+		{
+			throw std::logic_error(
+			    createUndefinedAttributeErrorMessage(AlertAttribute_NAME, attribute));
+			break;
+		}
 	}
 }
 
-}
-}
+} // namespace parsers
+} // namespace forecast_io

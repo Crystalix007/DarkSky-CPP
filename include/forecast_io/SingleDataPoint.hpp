@@ -11,7 +11,7 @@ class SingleDataPoint
 public:
 	SingleDataPoint() = default;
 	SingleDataPoint(DataPoint baseDataPoint, double temperature,
-			double apparentTemperature) noexcept;
+	                double apparentTemperature) noexcept;
 
 	// Constant getters ---------------------------------------------------------
 	const DataPoint& getBaseDataPoint() const
@@ -52,13 +52,12 @@ public:
 	}
 
 private:
-
 	DataPoint baseDataPoint;
 
 	double temperature;
 	double apparentTemperature;
 };
 
-}
+} // namespace forecast_io
 
 #endif // SINGLEDATAPOINT_HPP

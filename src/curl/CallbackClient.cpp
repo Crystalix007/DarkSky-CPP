@@ -5,7 +5,8 @@
 namespace curl
 {
 
-CallbackClient::CallbackClient(char* const& pErrorBuffer) : pCurlHandle(curl_easy_init()), pErrorBuffer(pErrorBuffer), pHeaders(NULL)
+CallbackClient::CallbackClient(char* const& pErrorBuffer)
+    : pCurlHandle(curl_easy_init()), pErrorBuffer(pErrorBuffer), pHeaders(NULL)
 {
 	if (pCurlHandle)
 	{
@@ -14,7 +15,8 @@ CallbackClient::CallbackClient(char* const& pErrorBuffer) : pCurlHandle(curl_eas
 		{
 			throw setupResult;
 		}
-	} else
+	}
+	else
 	{
 		throw CURLE_FAILED_INIT;
 	}
@@ -50,15 +52,14 @@ CURLcode CallbackClient::getInfo(CURLINFO info, void* pInfoData) const
 }
 
 CURLcode CallbackClient::read(const char* url, WriteFunction* pCallback, void* pUserData,
-		long timeout)
+                              long timeout)
 {
 	CURLcode result(CURLE_FAILED_INIT);
 
-	if (
-			CURLE_OK == (result = curl_easy_setopt(pCurlHandle, CURLOPT_WRITEFUNCTION, pCallback))
-			&& CURLE_OK == (result = curl_easy_setopt(pCurlHandle, CURLOPT_WRITEDATA, pUserData))
-			&& CURLE_OK == (result = curl_easy_setopt(pCurlHandle, CURLOPT_TIMEOUT, timeout))
-			&& CURLE_OK == (result = curl_easy_setopt(pCurlHandle, CURLOPT_URL, url)))
+	if (CURLE_OK == (result = curl_easy_setopt(pCurlHandle, CURLOPT_WRITEFUNCTION, pCallback)) &&
+	    CURLE_OK == (result = curl_easy_setopt(pCurlHandle, CURLOPT_WRITEDATA, pUserData)) &&
+	    CURLE_OK == (result = curl_easy_setopt(pCurlHandle, CURLOPT_TIMEOUT, timeout)) &&
+	    CURLE_OK == (result = curl_easy_setopt(pCurlHandle, CURLOPT_URL, url)))
 	{
 		if (pHeaders != NULL)
 		{
@@ -88,7 +89,7 @@ CURLcode CallbackClient::setupHandle(CURL*& pCurlHandle)
 	return result;
 }
 
-//CURLcode CallbackClient::read(const char* url, FILE* pOutput, long timeout)
+// CURLcode CallbackClient::read(const char* url, FILE* pOutput, long timeout)
 //{
 //	CURLcode result(CURLE_FAILED_INIT);
 //
@@ -110,4 +111,4 @@ CURLcode CallbackClient::setupHandle(CURL*& pCurlHandle)
 //	return result;
 //}
 
-}
+} // namespace curl

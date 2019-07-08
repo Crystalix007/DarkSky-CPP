@@ -21,7 +21,7 @@ static int getPaddingLength(const std::string& prefix, int resultLength)
 }
 
 std::string createPaddedHeader(const std::string& prefix,
-		const std::stringstream::char_type paddingSymbol, int resultLength)
+                               const std::stringstream::char_type paddingSymbol, int resultLength)
 {
 	const int paddingLength = getPaddingLength(prefix, resultLength);
 
@@ -38,5 +38,5 @@ std::string createHeaderSeparator(const std::stringstream::char_type symbol, int
 	return ss.str();
 }
 
-}
-}
+} // namespace writers
+} // namespace console_weather

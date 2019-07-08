@@ -9,20 +9,19 @@ namespace forecast_io
 namespace parsers
 {
 
-SynchronicDataPointFactoryParser::SynchronicDataPointFactoryParser(factories::SynchronicDataPointFactory* pFactory) noexcept :
-	NotifyingSynchronicDataPointParser(pFactory),
-	factory(*pFactory)
+SynchronicDataPointFactoryParser::SynchronicDataPointFactoryParser(
+    factories::SynchronicDataPointFactory* pFactory) noexcept
+    : NotifyingSynchronicDataPointParser(pFactory), factory(*pFactory)
 {
 }
 
-void SynchronicDataPointFactoryParser::parse(json_object* const & pJsonObj)
+void SynchronicDataPointFactoryParser::parse(json_object* const& pJsonObj)
 {
 	NotifyingSynchronicDataPointParser::parse(pJsonObj);
 	SynchronicDataPoint dataPoint = factory.create();
 	// TODO: Finish notification of synchronic datapoint
 }
 
-}
+} // namespace parsers
 
-}
-
+} // namespace forecast_io

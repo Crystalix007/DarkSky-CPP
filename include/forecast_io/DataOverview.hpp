@@ -10,13 +10,12 @@ namespace forecast_io
 class DataOverview
 {
 public:
-
 	DataOverview() = default;
 	DataOverview(std::string summary, std::string iconName) noexcept;
 	DataOverview(const DataOverview& copyee) = default;
 	virtual ~DataOverview() = default;
 
-	virtual DataOverview& operator= (const DataOverview& other) = default;
+	virtual DataOverview& operator=(const DataOverview& other) = default;
 
 	virtual std::ostream& dump(std::ostream& o) const;
 	virtual std::string str() const;
@@ -44,20 +43,17 @@ public:
 	}
 
 private:
-
 	std::string summary;
 	std::string iconName;
-
 };
 
-}
+} // namespace forecast_io
 
 namespace std
 {
 string to_string(const forecast_io::DataOverview& value);
 }
 
-std::ostream& operator<<(std::ostream& o,
-		const forecast_io::DataOverview& value);
+std::ostream& operator<<(std::ostream& o, const forecast_io::DataOverview& value);
 
 #endif // DATAOVERVIEW_HPP

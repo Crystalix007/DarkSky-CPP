@@ -9,17 +9,16 @@ namespace forecast_io
 namespace factories
 {
 
-ForecastFactory::ForecastFactory(math::MeasurementSystem defaultUnits) noexcept : ForecastFactory(defaultUnits, std::unique_ptr<Forecast>(new Forecast(defaultUnits)))
+ForecastFactory::ForecastFactory(math::MeasurementSystem defaultUnits) noexcept
+    : ForecastFactory(defaultUnits, std::unique_ptr<Forecast>(new Forecast(defaultUnits)))
 {
-
 }
 
-ForecastFactory::ForecastFactory(math::MeasurementSystem defaultUnits, std::unique_ptr<Forecast> instance) noexcept :
-	currentWeatherDetailsSetter(instance->getCurrentWeather()),
-	defaultUnits(defaultUnits),
-	result(std::move(instance))
+ForecastFactory::ForecastFactory(math::MeasurementSystem defaultUnits,
+                                 std::unique_ptr<Forecast> instance) noexcept
+    : currentWeatherDetailsSetter(instance->getCurrentWeather()), defaultUnits(defaultUnits),
+      result(std::move(instance))
 {
-
 }
 
 void ForecastFactory::clear()
@@ -36,7 +35,7 @@ std::unique_ptr<Forecast> ForecastFactory::create()
 
 void ForecastFactory::notifyAlert(Alert& alert)
 {
-//	result->setAlerts(alerts);
+	//	result->setAlerts(alerts);
 	std::vector<Alert>& alerts = result->getAlerts();
 	alerts.push_back(alert);
 }
@@ -79,6 +78,5 @@ void ForecastFactory::notifyTimezone(const std::string& timezone)
 	result->setTimezone(timezone);
 }
 
-}
-}
-
+} // namespace factories
+} // namespace forecast_io

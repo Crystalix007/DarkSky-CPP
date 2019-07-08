@@ -9,7 +9,7 @@ namespace forecast_io
 // Forward declarations
 namespace factories
 {
-	class SynchronicDataPointFactory;
+class SynchronicDataPointFactory;
 }
 namespace listeners
 {
@@ -19,20 +19,20 @@ namespace listeners
 namespace parsers
 {
 
-class SynchronicDataPointFactoryParser : public forecast_io::parsers::NotifyingSynchronicDataPointParser
+class SynchronicDataPointFactoryParser
+    : public forecast_io::parsers::NotifyingSynchronicDataPointParser
 {
 public:
 	SynchronicDataPointFactoryParser(factories::SynchronicDataPointFactory* pFactory) noexcept;
 
-	virtual void parse(json_object* const & pJsonObj);
+	virtual void parse(json_object* const& pJsonObj);
 
 private:
 	factories::SynchronicDataPointFactory& factory;
-
 };
 
-}
+} // namespace parsers
 
-}
+} // namespace forecast_io
 
 #endif // SYNCHRONICDATAPOINTFACTORYPARSER_HPP

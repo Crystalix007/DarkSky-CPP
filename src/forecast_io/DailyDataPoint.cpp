@@ -3,12 +3,9 @@
 namespace forecast_io
 {
 
-DailyDataPoint::DailyDataPoint(AggregateDataPoint baseDataPoint,
-		double moonPhase) noexcept :
-		baseDataPoint(baseDataPoint),
-		moonPhase(moonPhase)
+DailyDataPoint::DailyDataPoint(AggregateDataPoint baseDataPoint, double moonPhase) noexcept
+    : baseDataPoint(baseDataPoint), moonPhase(moonPhase)
 {
 }
 
-}
-
+} // namespace forecast_io

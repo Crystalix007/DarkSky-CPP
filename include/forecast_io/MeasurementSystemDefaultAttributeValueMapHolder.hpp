@@ -5,7 +5,6 @@
 #include <string>
 #include <unordered_map>
 
-
 // Forward declarations
 namespace math
 {
@@ -18,17 +17,16 @@ namespace forecast_io
 // Typedefs
 typedef std::unordered_map<std::string, math::MeasurementSystem> MeasurementSystemAttributeValueMap;
 
-
 class MeasurementSystemDefaultAttributeValueMapHolder
 {
 public:
-
 	static std::unique_ptr<MeasurementSystemAttributeValueMap>& getInstance()
 	{
 		return loadInstanceLazily();
 	}
 
-	static const math::MeasurementSystem* findMeasurementSystem(MeasurementSystemAttributeValueMap::key_type attributeValue);
+	static const math::MeasurementSystem*
+	findMeasurementSystem(MeasurementSystemAttributeValueMap::key_type attributeValue);
 
 	static void releaseInstance()
 	{
@@ -36,7 +34,6 @@ public:
 	}
 
 private:
-
 	MeasurementSystemDefaultAttributeValueMapHolder() {}
 
 	static std::unique_ptr<MeasurementSystemAttributeValueMap> pInstance;
@@ -51,10 +48,8 @@ private:
 		}
 		return pInstance;
 	}
-
-
 };
 
-}
+} // namespace forecast_io
 
 #endif // MEASUREMENTSYSTEMDEFAULTATTRIBUTEVALUEMAPHOLDER_HPP

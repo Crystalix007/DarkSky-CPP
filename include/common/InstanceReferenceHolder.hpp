@@ -6,14 +6,11 @@
 namespace common
 {
 
-template<typename T>
-class InstanceReferenceHolder: AbstractInstanceHolder<T>
+template <typename T>
+class InstanceReferenceHolder : AbstractInstanceHolder<T>
 {
 public:
-	InstanceReferenceHolder(T& instance) : pInstance(&instance)
-	{
-
-	}
+	InstanceReferenceHolder(T& instance) : pInstance(&instance) {}
 
 	const T& getInstance() const
 	{
@@ -25,13 +22,10 @@ public:
 		return *pInstance;
 	}
 
-
 private:
-
 	T* pInstance;
-
 };
 
-}
+} // namespace common
 
 #endif // INSTANCEREFERENCEHOLDER_HPP

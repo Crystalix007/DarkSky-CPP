@@ -1,9 +1,9 @@
 #ifndef AGGREGATEDATAPOINT_HPP
 #define AGGREGATEDATAPOINT_HPP
 
-#include "DataPoint.hpp"
-#include "../math/Range.hpp"
 #include "../common/TimestampedValue.hpp"
+#include "../math/Range.hpp"
+#include "DataPoint.hpp"
 
 namespace forecast_io
 {
@@ -12,12 +12,11 @@ class AggregateDataPoint
 {
 public:
 	AggregateDataPoint() = default;
-	AggregateDataPoint(DataPoint baseDataPoint,
-	double precipitationAccumulation,
-		common::TimestampedValue<double> precipitationIntensityMax,
-		math::Range<time_t> dayLength,
-		math::Range<common::TimestampedValue<double>> temperature,
-		math::Range<common::TimestampedValue<double>> apparentTemperature) noexcept;
+	AggregateDataPoint(DataPoint baseDataPoint, double precipitationAccumulation,
+	                   common::TimestampedValue<double> precipitationIntensityMax,
+	                   math::Range<time_t> dayLength,
+	                   math::Range<common::TimestampedValue<double>> temperature,
+	                   math::Range<common::TimestampedValue<double>> apparentTemperature) noexcept;
 
 	// Constant getters ---------------------------------------------------------
 	const DataPoint& getBaseDataPoint() const
@@ -61,8 +60,7 @@ public:
 		this->baseDataPoint = baseDataPoint;
 	}
 
-	void setPrecipitationIntensityMax(
-			common::TimestampedValue<double> precipitationIntensityMax)
+	void setPrecipitationIntensityMax(common::TimestampedValue<double> precipitationIntensityMax)
 	{
 		this->precipitationIntensityMax = precipitationIntensityMax;
 	}
@@ -77,20 +75,17 @@ public:
 		this->dayLength = dayLength;
 	}
 
-	void setTemperature(
-			math::Range<common::TimestampedValue<double>> temperature)
+	void setTemperature(math::Range<common::TimestampedValue<double>> temperature)
 	{
 		this->temperature = temperature;
 	}
 
-	void setApparentTemperature(
-			math::Range<common::TimestampedValue<double>> apparentTemperature)
+	void setApparentTemperature(math::Range<common::TimestampedValue<double>> apparentTemperature)
 	{
 		this->apparentTemperature = apparentTemperature;
 	}
 
 private:
-
 	DataPoint baseDataPoint;
 	/**
 	 * A range from sunrise to sunset.
@@ -101,9 +96,8 @@ private:
 
 	math::Range<common::TimestampedValue<double>> temperature;
 	math::Range<common::TimestampedValue<double>> apparentTemperature;
-
 };
 
-}
+} // namespace forecast_io
 
 #endif // AGGREGATEDATAPOINT_HPP

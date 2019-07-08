@@ -23,8 +23,8 @@ enum FlagsAttribute
 // Typedefs
 typedef std::unordered_map<std::string, FlagsAttribute> FlagsAttributeNameMap;
 
-}
+} // namespace parsers
 
-}
+} // namespace forecast_io
 
 #endif // FLAGSATTRIBUTE_HPP

@@ -12,7 +12,6 @@ namespace listeners
 class DataPointDetailsListener
 {
 public:
-
 	virtual ~DataPointDetailsListener() = default;
 
 	virtual void notifyCloudCover(double cloudCover);
@@ -29,10 +28,9 @@ public:
 	virtual void notifyVisibility(double visibility);
 	virtual void notifyWindBearing(double bearing);
 	virtual void notifyWindSpeed(double speed);
-
 };
 
-}
-}
+} // namespace listeners
+} // namespace forecast_io
 
 #endif // DATAPOINTDETAILSLISTENER_HPP

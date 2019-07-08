@@ -9,18 +9,19 @@ namespace parsers
 
 // Con-/destructors -------------------------------------------------------------
 
-ParserManager::ParserManager(factories::ForecastFactory* pListener, factories::FlagsFactory* pFlagsFactory) noexcept :
-	ParserManager(pListener, pFlagsFactory, &alertFactory)
+ParserManager::ParserManager(factories::ForecastFactory* pListener,
+                             factories::FlagsFactory* pFlagsFactory) noexcept
+    : ParserManager(pListener, pFlagsFactory, &alertFactory)
 {
 }
 
-ParserManager::ParserManager(factories::ForecastFactory* pListener, factories::FlagsFactory* pFlagsFactory, factories::AlertFactory* pAlertFactory) noexcept :
-    Notifier(pListener),
-    alertParser(pAlertFactory),
-    alertsParser(pListener, alertParser, pAlertFactory),
-    flagsParser(pListener, pFlagsFactory),
-    synchronicDataPointParser(&pListener->getCurrentWeatherDetailsSetter()),
-    forecastParser(pListener, alertsParser, flagsParser, synchronicDataPointParser)
+ParserManager::ParserManager(factories::ForecastFactory* pListener,
+                             factories::FlagsFactory* pFlagsFactory,
+                             factories::AlertFactory* pAlertFactory) noexcept
+    : Notifier(pListener), alertParser(pAlertFactory),
+      alertsParser(pListener, alertParser, pAlertFactory), flagsParser(pListener, pFlagsFactory),
+      synchronicDataPointParser(&pListener->getCurrentWeatherDetailsSetter()),
+      forecastParser(pListener, alertsParser, flagsParser, synchronicDataPointParser)
 {
 }
 
@@ -66,5 +67,5 @@ NotifyingForecastParser& ParserManager::getForecastParser()
 	return forecastParser;
 }
 
-}
-}
+} // namespace parsers
+} // namespace forecast_io

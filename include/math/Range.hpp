@@ -4,16 +4,13 @@
 namespace math
 {
 
-template<typename T>
+template <typename T>
 class Range
 {
 public:
 	Range() = default;
 
-	Range(T min, T max) :
-			min(min), max(max)
-	{
-	}
+	Range(T min, T max) : min(min), max(max) {}
 
 	// Constant getters ---------------------------------------------------------
 	T getMin() const
@@ -38,12 +35,10 @@ public:
 	}
 
 private:
-
 	T min;
 	T max;
-
 };
 
-}
+} // namespace math
 
 #endif // RANGE_HPP
