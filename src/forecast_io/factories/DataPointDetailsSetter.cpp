@@ -66,6 +66,11 @@ void DataPointDetailsSetter::notifyTime(time_t time)
 	getInstance().setTime(time);
 }
 
+void DataPointDetailsSetter::notifyUVIndex(double uvIndex)
+{
+	getInstance().setUVIndex(uvIndex);
+}
+
 void DataPointDetailsSetter::notifyVisibility(double visibility)
 {
 	getInstance().setVisibility(visibility);
@@ -74,6 +79,11 @@ void DataPointDetailsSetter::notifyVisibility(double visibility)
 void DataPointDetailsSetter::notifyWindBearing(double bearing)
 {
 	getInstance().getWind().setDirection(bearing);
+}
+
+void DataPointDetailsSetter::notifyWindGust(double gust)
+{
+	getInstance().getWind().setDirection(gust);
 }
 
 void DataPointDetailsSetter::notifyWindSpeed(double speed)

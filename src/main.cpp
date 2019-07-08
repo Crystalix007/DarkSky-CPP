@@ -8,6 +8,7 @@
 #include <stdexcept>
 #include <string>
 #include <utility>
+// #include <execinfo.h>
 
 #include "common/SysExit.hpp"
 #include "console/dimensions.hpp"
@@ -185,6 +186,25 @@ static int readUrl(const char* pUrl)
 	return result;
 }
 
+/*
+void handler()
+{
+    void *trace_elems[20];
+    int trace_elem_count(backtrace( trace_elems, 20 ));
+    char **stack_syms(backtrace_symbols( trace_elems, trace_elem_count ));
+    for ( int i = 0 ; i < trace_elem_count ; ++i )
+    {
+        std::cout << stack_syms[i] << "\n";
+    }
+    free( stack_syms );
+
+    exit(1);
+}
+
+int main(int argc, char** argv)
+{
+    std::set_terminate(handler);
+*/
 int main(int argc, char** argv)
 {
 	int result(EXIT_FAILURE);

@@ -65,6 +65,11 @@ public:
 		return visibility;
 	}
 
+	double getGust() const
+	{
+		return gust;
+	}
+
 	const math::RadialVelocity& getWind() const
 	{
 		return wind;
@@ -98,6 +103,11 @@ public:
 		this->dewPoint = dewPoint;
 	}
 
+	void setGust(double gust)
+	{
+		this->gust = gust;
+	}
+
 	void setHumidity(double humidity)
 	{
 		this->humidity = humidity;
@@ -128,6 +138,11 @@ public:
 		this->time = time;
 	}
 
+	void setUVIndex(double uvIndex)
+	{
+		this->uvIndex = uvIndex;
+	}
+
 	void setVisibility(double visibility)
 	{
 		this->visibility = visibility;
@@ -142,11 +157,13 @@ private:
 	double cloudCover;
 	double dewPoint;
 	double humidity;
+	double gust;
 	DataOverview overview;
 	double ozone;
 	Precipitation precipitation;
 	double pressure;
 	time_t time;
+	double uvIndex;
 	double visibility;
 	math::RadialVelocity wind;
 };

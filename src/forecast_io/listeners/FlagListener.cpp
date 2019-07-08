@@ -13,6 +13,10 @@ void FlagListener::notifySources(std::unordered_set<std::string>& sources)
 {
 	(void)sources; /*Avoid "unused parameter" warning*/
 }
+void FlagListener::notifyNearestStation(double nearestStation)
+{
+	(void)nearestStation; /*Avoid "unused parameter" warning*/
+}
 void FlagListener::notifyStations(std::unordered_multimap<std::string, std::string>& stations)
 {
 	(void)stations; /*Avoid "unused parameter" warning*/

@@ -77,6 +77,11 @@ void SingleDataPointFactory::notifyTime(time_t time)
 	dataPointFactory.notifyTime(time);
 }
 
+void SingleDataPointFactory::notifyUVIndex(double uvIndex)
+{
+	dataPointFactory.notifyUVIndex(uvIndex);
+}
+
 void SingleDataPointFactory::notifyVisibility(double visibility)
 {
 	dataPointFactory.notifyVisibility(visibility);
@@ -85,6 +90,11 @@ void SingleDataPointFactory::notifyVisibility(double visibility)
 void SingleDataPointFactory::notifyWindBearing(double bearing)
 {
 	dataPointFactory.notifyWindBearing(bearing);
+}
+
+void SingleDataPointFactory::notifyWindGust(double gust)
+{
+	dataPointFactory.notifyWindGust(gust);
 }
 
 void SingleDataPointFactory::notifyWindSpeed(double speed)

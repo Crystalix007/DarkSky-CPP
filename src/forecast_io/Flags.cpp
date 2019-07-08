@@ -8,16 +8,16 @@ namespace forecast_io
 {
 
 Flags::Flags(math::MeasurementSystem units) noexcept
-    : Flags(true, false, std::unordered_set<std::string>(),
+    : Flags(true, false, std::unordered_set<std::string>(), -1.0,
             std::unordered_multimap<std::string, std::string>(), units)
 {
 }
 
 Flags::Flags(bool darkskyUnavailable, bool metnoLicense, std::unordered_set<std::string> sources,
-             std::unordered_multimap<std::string, std::string> stations,
+             double nearestStation, std::unordered_multimap<std::string, std::string> stations,
              math::MeasurementSystem units) noexcept
     : darkskyUnavailable(darkskyUnavailable), metnoLicense(metnoLicense), sources(sources),
-      stations(stations), units(units)
+      nearestStation(nearestStation), stations(stations), units(units)
 {
 }
 
@@ -29,6 +29,8 @@ std::ostream& Flags::dump(std::ostream& o) const
 	o << common::to_quoted_string(isDarkskyUnavailable());
 	o << ", getSources()=";
 	o << common::to_collection_string(getSources());
+	o << ", getNearestStation()=";
+	o << common::to_quoted_string(getNearestStation());
 	o << ", getStations()=";
 	o << common::to_collection_string(getStations());
 	o << ", getUnits()=";

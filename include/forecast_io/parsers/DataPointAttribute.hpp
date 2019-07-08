@@ -43,11 +43,13 @@ enum DataPointAttribute
 	TEMPERATURE_MIN,
 	TEMPERATURE_MIN_TIME,
 	TIME,
+	UV_INDEX,
 	VISIBILITY,
-	WIND_SPEED,
 	WIND_BEARING,
+	WIND_GUST,
+	WIND_SPEED,
 
-	DataPointAttribute_MAX = WIND_BEARING,
+	DataPointAttribute_MAX = WIND_SPEED,
 	DataPointAttribute_COUNT = DataPointAttribute_MAX + 1
 };
 

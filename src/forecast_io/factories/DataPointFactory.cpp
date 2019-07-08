@@ -66,6 +66,11 @@ void DataPointFactory::notifyTime(time_t time)
 	result.setTime(time);
 }
 
+void DataPointFactory::notifyUVIndex(double uvIndex)
+{
+	result.setUVIndex(uvIndex);
+}
+
 void DataPointFactory::notifyVisibility(double visibility)
 {
 	result.setVisibility(visibility);
@@ -74,6 +79,11 @@ void DataPointFactory::notifyVisibility(double visibility)
 void DataPointFactory::notifyWindBearing(double bearing)
 {
 	result.getWind().setDirection(bearing);
+}
+
+void DataPointFactory::notifyWindGust(double gust)
+{
+	result.setGust(gust);
 }
 
 void DataPointFactory::notifyWindSpeed(double speed)

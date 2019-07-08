@@ -38,8 +38,10 @@ static void insertDefaultAttributeNames(DataPointAttributeNameMap& attributeName
 	attributeNames["temperatureMin"] = DataPointAttribute::TEMPERATURE_MIN;
 	attributeNames["temperatureMinTime"] = DataPointAttribute::TEMPERATURE_MIN_TIME;
 	attributeNames["time"] = DataPointAttribute::TIME;
+	attributeNames["uvIndex"] = DataPointAttribute::UV_INDEX;
 	attributeNames["visibility"] = DataPointAttribute::VISIBILITY;
 	attributeNames["windSpeed"] = DataPointAttribute::WIND_SPEED;
+	attributeNames["windGust"] = DataPointAttribute::WIND_GUST;
 	attributeNames["windBearing"] = DataPointAttribute::WIND_BEARING;
 }
 

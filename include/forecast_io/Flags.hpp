@@ -17,7 +17,7 @@ class Flags
 public:
 	Flags(math::MeasurementSystem units) noexcept;
 	Flags(bool darkskyUnavailable, bool metnoLicense, std::unordered_set<std::string> sources,
-	      std::unordered_multimap<std::string, std::string> stations,
+	      double nearestStation, std::unordered_multimap<std::string, std::string> stations,
 	      math::MeasurementSystem units) noexcept;
 	Flags(const Flags& copyee) = default;
 	virtual ~Flags() = default;
@@ -41,6 +41,11 @@ public:
 	const std::unordered_set<std::string>& getSources() const
 	{
 		return sources;
+	}
+
+	double getNearestStation() const
+	{
+		return nearestStation;
 	}
 
 	const std::unordered_multimap<std::string, std::string>& getStations() const
@@ -75,6 +80,11 @@ public:
 		this->sources = sources;
 	}
 
+	void setNearestStation(double nearestStation)
+	{
+		this->nearestStation = nearestStation;
+	}
+
 	void setStations(std::unordered_multimap<std::string, std::string> stations)
 	{
 		this->stations = stations;
@@ -94,6 +104,7 @@ private:
 	bool darkskyUnavailable;
 	bool metnoLicense;
 	std::unordered_set<std::string> sources;
+	double nearestStation;
 	std::unordered_multimap<std::string, std::string> stations;
 	math::MeasurementSystem units;
 };

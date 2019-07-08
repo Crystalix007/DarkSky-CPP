@@ -49,6 +49,10 @@ void DataPointDetailsListener::notifyTime(time_t time)
 {
 	(void)time; /*Avoid "unused parameter" warning*/
 }
+void DataPointDetailsListener::notifyUVIndex(double uvIndex)
+{
+	(void)uvIndex; /*Avoid "unused parameter" warning*/
+}
 void DataPointDetailsListener::notifyVisibility(double visibility)
 {
 	(void)visibility; /*Avoid "unused parameter" warning*/
@@ -56,6 +60,10 @@ void DataPointDetailsListener::notifyVisibility(double visibility)
 void DataPointDetailsListener::notifyWindBearing(double bearing)
 {
 	(void)bearing; /*Avoid "unused parameter" warning*/
+}
+void DataPointDetailsListener::notifyWindGust(double gust)
+{
+	(void)gust; /*Avoid "unused parameter" warning*/
 }
 void DataPointDetailsListener::notifyWindSpeed(double speed)
 {

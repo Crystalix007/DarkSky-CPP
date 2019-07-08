@@ -14,6 +14,7 @@ enum FlagsAttribute
 {
 	DARKSKY_UNAVAILABLE,
 	METNO_LICENSE,
+	NEAREST_STATION,
 	SOURCES,
 	UNITS,
 	FlagsAttribute_MAX = UNITS,

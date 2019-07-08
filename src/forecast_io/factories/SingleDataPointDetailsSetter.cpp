@@ -77,6 +77,11 @@ void SingleDataPointDetailsSetter::notifyTime(time_t time)
 	dataPointDetailsSetter.notifyTime(time);
 }
 
+void SingleDataPointDetailsSetter::notifyUVIndex(double uvIndex)
+{
+	dataPointDetailsSetter.notifyUVIndex(uvIndex);
+}
+
 void SingleDataPointDetailsSetter::notifyVisibility(double visibility)
 {
 	dataPointDetailsSetter.notifyVisibility(visibility);
@@ -85,6 +90,11 @@ void SingleDataPointDetailsSetter::notifyVisibility(double visibility)
 void SingleDataPointDetailsSetter::notifyWindBearing(double bearing)
 {
 	dataPointDetailsSetter.notifyWindBearing(bearing);
+}
+
+void SingleDataPointDetailsSetter::notifyWindGust(double gust)
+{
+	dataPointDetailsSetter.notifyWindGust(gust);
 }
 
 void SingleDataPointDetailsSetter::notifyWindSpeed(double speed)

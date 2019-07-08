@@ -1,6 +1,7 @@
 #include "forecast_io/parsers/NotifyingFlagParser.hpp"
 
 #include <functional>
+#include <iostream>
 #include <sstream>
 #include <stdexcept>
 #include <string>
@@ -87,6 +88,7 @@ void NotifyingFlagParser::finishParse()
 void NotifyingFlagParser::handleUnmappedAttribute(const std::string& key,
                                                   json_object* const& pValue)
 {
+	std::cerr << "Found unmapped attribute: " << key << std::endl;
 	const size_t foundIdx = key.find_last_of(sourceStationAttributeSuffix);
 	if (foundIdx == std::string::npos)
 	{
@@ -127,6 +129,15 @@ void NotifyingFlagParser::parseAttribute(const FlagsAttribute& attribute,
 		case FlagsAttribute::SOURCES:
 		{
 			json::insertJsonStringArrayValues(sources, pValue);
+			break;
+		}
+		case FlagsAttribute::NEAREST_STATION:
+		{
+			const double nearestStation = double(json_object_get_double(pValue));
+			for (listeners::FlagListener* const& pListener : getListeners())
+			{
+				pListener->notifyNearestStation(nearestStation);
+			}
 			break;
 		}
 		case FlagsAttribute::UNITS:

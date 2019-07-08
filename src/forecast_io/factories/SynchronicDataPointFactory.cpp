@@ -87,6 +87,11 @@ void SynchronicDataPointFactory::notifyTime(time_t time)
 	singleDataPointFactory.notifyTime(time);
 }
 
+void SynchronicDataPointFactory::notifyUVIndex(double uvIndex)
+{
+	singleDataPointFactory.notifyUVIndex(uvIndex);
+}
+
 void SynchronicDataPointFactory::notifyVisibility(double visibility)
 {
 	singleDataPointFactory.notifyVisibility(visibility);
@@ -95,6 +100,11 @@ void SynchronicDataPointFactory::notifyVisibility(double visibility)
 void SynchronicDataPointFactory::notifyWindBearing(double bearing)
 {
 	singleDataPointFactory.notifyWindBearing(bearing);
+}
+
+void SynchronicDataPointFactory::notifyWindGust(double gust)
+{
+	singleDataPointFactory.notifyWindGust(gust);
 }
 
 void SynchronicDataPointFactory::notifyWindSpeed(double speed)

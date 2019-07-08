@@ -35,6 +35,7 @@ public:
 	virtual void notifyDarkskyUnavailable(bool darkskyUnavailable);
 	virtual void notifyMetnoLicense(bool metnoLicense);
 	virtual void notifySources(std::unordered_set<std::string>& sources);
+	virtual void notifyNearestStation(double nearestStation);
 	virtual void notifyStations(std::unordered_multimap<std::string, std::string>& stations);
 	virtual void notifyUnits(math::MeasurementSystem units);
 

@@ -32,6 +32,11 @@ void FlagsFactory::notifySources(std::unordered_set<std::string>& sources)
 	result.setSources(sources);
 }
 
+void FlagsFactory::notifyNearestStation(double nearestStation)
+{
+	result.setNearestStation(nearestStation);
+}
+
 void FlagsFactory::notifyStations(std::unordered_multimap<std::string, std::string>& stations)
 {
 	result.setStations(stations);

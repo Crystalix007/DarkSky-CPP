@@ -15,6 +15,7 @@ public:
 	virtual void parse(json_object* const& pJsonObj)
 	{
 		const int arrayLength = json_object_array_length(pJsonObj);
+
 		for (int i = 0; i < arrayLength; ++i)
 		{
 			json_object* const& arrayElement = json_object_array_get_idx(pJsonObj, i);

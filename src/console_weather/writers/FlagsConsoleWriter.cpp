@@ -26,6 +26,10 @@ void FlagsConsoleWriter::write(const forecast_io::Flags& value, std::ostream& ou
 	const std::string metnoLicenseStr = common::to_string(value.hasMetnoLicense());
 	output << metnoLicenseStr << '\n';
 
+	output << "Nearest station: ";
+	const double nearestStation = value.getNearestStation();
+	output << nearestStation << '\n';
+
 	const std::unordered_set<std::string>& sources = value.getSources();
 	output << "Sources used: " << sources.size() << '\n';
 

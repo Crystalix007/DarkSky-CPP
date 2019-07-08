@@ -9,6 +9,7 @@ static void insertDefaultAttributeNames(FlagsAttributeNameMap& attributeNames)
 {
 	attributeNames["darksky-unavailable"] = FlagsAttribute::DARKSKY_UNAVAILABLE;
 	attributeNames["metno-license"] = FlagsAttribute::METNO_LICENSE;
+	attributeNames["nearest-station"] = FlagsAttribute::NEAREST_STATION;
 	attributeNames["sources"] = FlagsAttribute::SOURCES;
 	attributeNames["units"] = FlagsAttribute::UNITS;
 }

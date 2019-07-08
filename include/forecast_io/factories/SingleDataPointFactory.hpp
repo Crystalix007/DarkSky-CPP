@@ -42,8 +42,10 @@ public:
 	virtual void notifySummary(const std::string& summary);
 	virtual void notifyTemperature(double temperature);
 	virtual void notifyTime(time_t time);
+	virtual void notifyUVIndex(double uvIndex);
 	virtual void notifyVisibility(double visibility);
 	virtual void notifyWindBearing(double bearing);
+	virtual void notifyWindGust(double gust);
 	virtual void notifyWindSpeed(double speed);
 
 private:

@@ -18,6 +18,7 @@ class FlagsConsoleWriter
 {
 
 public:
+	virtual ~FlagsConsoleWriter() = default;
 	virtual void write(const forecast_io::Flags& value, std::ostream& output);
 };
 

@@ -158,6 +158,14 @@ void NotifyingSynchronicDataPointParser::parseAttribute(const DataPointAttribute
 			}
 			break;
 		}
+		case UV_INDEX:
+		{
+			const double uvIndex(json_object_get_double(pValue));
+			for (listeners::SynchronicDataPointDetailsListener* const& pListener : getListeners())
+			{
+				pListener->notifyUVIndex(uvIndex);
+			}
+		}
 		case VISIBILITY:
 		{
 			const double visibility(json_object_get_double(pValue));
@@ -173,6 +181,15 @@ void NotifyingSynchronicDataPointParser::parseAttribute(const DataPointAttribute
 			for (listeners::SynchronicDataPointDetailsListener* const& pListener : getListeners())
 			{
 				pListener->notifyWindBearing(windBearing);
+			}
+			break;
+		}
+		case WIND_GUST:
+		{
+			const double windGust(json_object_get_double(pValue));
+			for (listeners::SynchronicDataPointDetailsListener* const& pListener : getListeners())
+			{
+				pListener->notifyWindGust(windGust);
 			}
 			break;
 		}
